@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_setting_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.easemob.easeui.customer.activity.SettingActivity">
+
+    <include layout="@layout/widget_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <!--设置appkey-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="@string/action_setting_appkey"
+            android:textColor="@color/ml_blue"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/ml_blue" />
+
+        <TextView
+            android:id="@+id/text_setting_appkey"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:hint="@string/action_setting_appkey"
+            android:paddingLeft="8dp"
+            android:textSize="18sp" />
+
+
+        <!--设置客服关联的IM服务号-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/action_setting_im_customer"
+            android:textColor="@color/ml_blue"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/ml_blue" />
+
+        <TextView
+            android:id="@+id/text_setting_im_customer"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:hint="@string/action_setting_im_customer"
+            android:paddingLeft="8dp"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
