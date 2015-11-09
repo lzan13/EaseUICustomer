@@ -44,6 +44,9 @@ public class SettingActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 初始化设置UI
+     */
     private void initView() {
         mRootView = findViewById(R.id.layout_setting_root);
         mAppkeyView = (TextView) findViewById(R.id.text_setting_appkey);
@@ -53,6 +56,9 @@ public class SettingActivity extends BaseActivity {
     }
 
 
+    /**
+     * 设置界面点击监听
+     */
     private View.OnClickListener viewListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -67,6 +73,9 @@ public class SettingActivity extends BaseActivity {
         }
     };
 
+    /**
+     * 改变客服关联账户
+     */
     private void changeIMCustomer() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(mActivity);
         EditText editText = new EditText(mActivity);

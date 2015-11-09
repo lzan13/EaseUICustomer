@@ -12,13 +12,13 @@ public class CustomerApplication extends Application {
     private Context mContext;
 
 
-
     @Override
     public void onCreate() {
         super.onCreate();
 
         mContext = this;
 
+        // CustomerHelper 初始化
         CustomerHelper.getInstance().init(mContext);
     }
 }

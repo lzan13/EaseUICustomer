@@ -42,7 +42,6 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         mLoginFormView = findViewById(R.id.layout_login_form);
-        mProgressView = findViewById(R.id.login_progress);
         mUsernameView = (EditText) findViewById(R.id.text_login_username);
         mPasswordView = (EditText) findViewById(R.id.text_login_password);
 
@@ -58,11 +57,11 @@ public class LoginActivity extends BaseActivity {
 
 
     /**
-     *
+     * 检测登陆，主要先判断是否满足登陆条件
      */
     private void attemptLogin() {
 
-        // Reset errors.
+        // 重置错误
         mUsernameView.setError(null);
         mPasswordView.setError(null);
 
@@ -94,6 +93,9 @@ public class LoginActivity extends BaseActivity {
         }
     }
 
+    /**
+     * 登陆到环信
+     */
     private void loginEasemob() {
         mDialog = new ProgressDialog(mActivity);
         mDialog.setMessage(getString(R.string.prompt_sign_in_begin));

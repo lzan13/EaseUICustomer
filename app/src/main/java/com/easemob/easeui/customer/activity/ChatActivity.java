@@ -42,6 +42,9 @@ public class ChatActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 初始化聊天界面，这里直接使用EaseUI库的EaseChatFragment界面实现
+     */
     private void initChat() {
         mUsername = getIntent().getExtras().getString(EaseConstant.EXTRA_USER_ID);
         mChatFragment = new EaseChatFragment();

@@ -5,8 +5,10 @@
     android:layout_height="match_parent"
     tools:context="com.easemob.easeui.customer.activity.DetailActivity">
 
+    <!--包含Toolbar-->
     <include layout="@layout/widget_toolbar" />
 
+    <!--底部操作条-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
+                <!--联系客服按钮-->
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

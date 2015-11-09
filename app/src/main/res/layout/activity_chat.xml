@@ -6,8 +6,10 @@
     android:orientation="vertical"
     tools:context="com.easemob.easeui.customer.activity.ChatActivity">
 
+    <!--包含Toolbar-->
     <include layout="@layout/widget_toolbar" />
 
+    <!--Chat界面的容器-->
     <FrameLayout
         android:id="@+id/layout_container"
         android:layout_width="match_parent"
