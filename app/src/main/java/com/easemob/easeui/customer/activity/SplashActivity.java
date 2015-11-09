@@ -7,7 +7,9 @@ import android.view.animation.AlphaAnimation;
 
 import com.easemob.chat.EMChatManager;
 import com.easemob.easeui.customer.R;
+import com.easemob.easeui.customer.application.CustomerConstants;
 import com.easemob.easeui.customer.application.CustomerHelper;
+import com.easemob.easeui.customer.util.MLSPUtil;
 
 public class SplashActivity extends BaseActivity {
 
@@ -43,6 +45,8 @@ public class SplashActivity extends BaseActivity {
                 if (CustomerHelper.getInstance().isLogined()) {
                     // 获取当前系统时间毫秒数
                     long start = System.currentTimeMillis();
+                    // 初始化数据
+                    initData();
                     // 加载本地会话到内存
                     EMChatManager.getInstance().loadAllConversations();
                     // 获取加载回话使用的时间差 毫秒表示
@@ -69,5 +73,19 @@ public class SplashActivity extends BaseActivity {
                 finish();
             }
         }).start();
+    }
+
+    /**
+     * 初始化app数据
+     */
+    private void initData() {
+        MLSPUtil.put(mActivity, CustomerConstants.C_APPKEY, "lzan13#hxsdkdemo");
+        MLSPUtil.put(mActivity, CustomerConstants.C_IM, "lz_customer");
+        MLSPUtil.put(mActivity, CustomerConstants.C_TRUENAME, "立正");
+        MLSPUtil.put(mActivity, CustomerConstants.C_USERNICKNAME, "风中小裤衩");
+        MLSPUtil.put(mActivity, CustomerConstants.C_DESCRIPTION, "风中的裤衩，孤孤单单，迎风飘扬");
+        MLSPUtil.put(mActivity, CustomerConstants.C_QQ, "1565176197");
+        MLSPUtil.put(mActivity, CustomerConstants.C_EMAIL, "lzan13@easemob.com");
+
     }
 }

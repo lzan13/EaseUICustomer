@@ -30,9 +30,11 @@
                 android:orientation="horizontal">
                 <!--联系客服按钮-->
                 <ImageView
+                    android:id="@+id/action_chat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_message_blue" />
+                    android:background="@color/ml_primary"
+                    android:src="@mipmap/ic_message_white" />
 
                 <View
                     android:layout_width="1px"
@@ -40,21 +42,24 @@
                     android:background="@color/ml_gray" />
 
                 <Button
+                    android:id="@+id/action_join_in_shopping_cart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ml_yellow"
                     android:text="加入购物车"
                     android:textColor="@color/ml_text_white"
-                    android:textSize="16sp"
-                    android:background="@color/ml_yellow"
-                    android:layout_weight="1"/>
+                    android:textSize="16sp" />
+
                 <Button
+                    android:id="@+id/action_buy_now"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/ml_primary"
                     android:text="立即购买"
                     android:textColor="@color/ml_text_white"
-                    android:textSize="16sp"
-                    android:background="@color/ml_primary"
-                    android:layout_weight="1"/>
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
 

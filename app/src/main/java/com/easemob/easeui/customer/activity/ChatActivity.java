@@ -30,7 +30,7 @@ public class ChatActivity extends BaseActivity {
     private void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.widget_toolbar);
 
-        mToolbar.setTitle(R.string.app_name);
+        mToolbar.setTitle("客服");
         mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.ml_text_white));
         setSupportActionBar(mToolbar);
@@ -50,8 +50,14 @@ public class ChatActivity extends BaseActivity {
         mChatFragment = new EaseChatFragment();
         mChatFragment.setArguments(getIntent().getExtras());
         getSupportFragmentManager().beginTransaction().add(R.id.layout_container, mChatFragment).commit();
-        mChatFragment.hideTitleBar();
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // hideTitleBar必须在onStart方法调用，因为EaseChatFragment的titileBar是在onActivityCreate方法里初始化的
+        mChatFragment.hideTitleBar();
     }
 
     @Override

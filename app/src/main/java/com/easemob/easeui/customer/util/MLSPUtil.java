@@ -6,6 +6,7 @@ package com.easemob.easeui.customer.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.Map;
 
@@ -116,4 +117,6 @@ public class MLSPUtil {
                 Context.MODE_PRIVATE);
         return sp.getAll();
     }
+
+
 }

@@ -18,7 +18,7 @@ import com.easemob.easeui.customer.util.MLSPUtil;
 
 
 /**
- * A login screen that offers login via email/password.
+ * 登陆界面
  */
 public class LoginActivity extends BaseActivity {
 

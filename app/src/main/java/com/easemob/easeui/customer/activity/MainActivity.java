@@ -8,7 +8,8 @@ import android.view.MenuItem;
 
 import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.customer.R;
-
+import com.easemob.easeui.customer.application.CustomerConstants;
+import com.easemob.easeui.customer.util.MLSPUtil;
 
 
 public class MainActivity extends BaseActivity {
@@ -29,7 +30,8 @@ public class MainActivity extends BaseActivity {
     private void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.widget_toolbar);
 
-        mToolbar.setTitle(R.string.app_name);
+        String nickName = (String) MLSPUtil.get(mActivity, CustomerConstants.C_USERNICKNAME, "");
+        mToolbar.setTitle(nickName);
         mToolbar.setNavigationIcon(R.mipmap.ic_avatar_01);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.ml_text_white));
         setSupportActionBar(mToolbar);
@@ -43,6 +45,7 @@ public class MainActivity extends BaseActivity {
 
     /**
      * Menu项点击方法
+     *
      * @param item
      * @return
      */
@@ -53,7 +56,8 @@ public class MainActivity extends BaseActivity {
             case R.id.action_message:
                 intent.setClass(mActivity, ChatActivity.class);
                 // 这个在使用EaseChatFragment时，传入的username参数key必须用EaseUI定义的，否则会报错
-                intent.putExtra(EaseConstant.EXTRA_USER_ID, "lz_customer");
+                String username = (String) MLSPUtil.get(mActivity, CustomerConstants.C_IM, "");
+                intent.putExtra(EaseConstant.EXTRA_USER_ID, username);
                 mActivity.startActivity(intent);
                 break;
             case R.id.action_setting:

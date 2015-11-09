@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">EaseUICustomer</string>
     <string name="title_activity_login">登录</string>
+    <string name="title_activity_setting">设置</string>
+    <string name="title_activity_detail">商品详情</string>
     <string name="title_change_appkey">修改appkey</string>
     <string name="title_change_im_customer">修改客服关联账户</string>
 

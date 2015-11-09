@@ -39,7 +39,10 @@ public class CustomerHelper {
      * @param context
      */
     public void init(Context context) {
+        // 初始化EaseUI，EaseUI内部初始化了环信的SDK
         EaseUI.getInstance().init(context);
+
+        // 获取EaseUI单例对象，为后边设置做准备
         mEaseUI = EaseUI.getInstance();
     }
 
