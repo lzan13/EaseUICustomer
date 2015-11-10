@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!--Toolbar 颜色-->
         <item name="colorPrimary">@color/ml_primary</item>
         <!--Toolbar字体颜色-->
@@ -13,6 +13,19 @@
         <item name="colorAccent">@color/ml_accent</item>
         <!--同上-->
         <item name="colorControlActivated">@color/ml_accent</item>
+
+
+    </style>
+
+    <style name="AppTheme" parent="AppTheme.Base">
+
+    </style>
+
+
+    <!-- Toolbar弹出菜单样式 -->
+    <style name="MLTheme.PupopMenu" parent="@style/ThemeOverlay.AppCompat">
+        <item name="android:colorBackground">#ffffff</item>
+        <item name="android:textColor">#232323</item>
     </style>
 
 </resources>
