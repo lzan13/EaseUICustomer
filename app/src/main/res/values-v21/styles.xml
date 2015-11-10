@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <!-- Base application theme. -->
+    <!--主题定义-->
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <!-- Main theme colors -->
         <!--Toolbar 颜色-->
         <item name="colorPrimary">@color/ml_primary</item>
         <!--Toolbar字体颜色-->
@@ -14,5 +15,4 @@
         <!--同上-->
         <item name="colorControlActivated">@color/ml_accent</item>
     </style>
-
 </resources>

@@ -14,7 +14,6 @@ import com.easemob.easeui.customer.application.CustomerConstants;
 import com.easemob.easeui.customer.util.MLSPUtil;
 
 public class SettingActivity extends BaseActivity {
-    private Toolbar mToolbar;
 
     private View mRootView;
     private TextView mAppkeyView;

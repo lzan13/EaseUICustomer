@@ -14,9 +14,6 @@ import com.easemob.easeui.customer.util.MLSPUtil;
 
 public class MainActivity extends BaseActivity {
 
-
-    private Toolbar mToolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +30,6 @@ public class MainActivity extends BaseActivity {
         String nickName = (String) MLSPUtil.get(mActivity, CustomerConstants.C_USERNICKNAME, "");
         mToolbar.setTitle(nickName);
         mToolbar.setNavigationIcon(R.mipmap.ic_avatar_01);
-        mToolbar.setTitleTextColor(getResources().getColor(R.color.ml_text_white));
         setSupportActionBar(mToolbar);
     }
 

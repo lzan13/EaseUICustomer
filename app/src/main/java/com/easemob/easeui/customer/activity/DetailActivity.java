@@ -10,7 +10,7 @@ import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.customer.R;
 
 public class DetailActivity extends BaseActivity {
-    private Toolbar mToolbar;
+
     private View mChatView;
     private View mJoinInShoppingCartView;
     private View mBuyNowView;

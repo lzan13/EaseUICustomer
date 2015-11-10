@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ml_primary">#ffe62f17</color>
-    <color name="ml_primary_dark">#ffe62f17</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="ml_primary">#f63a21</color>
+    <color name="ml_primary_dark">#c82712</color>
+    <color name="ml_text_primary">#ffffff</color>
+
+    <color name="ml_accent">#4899fc</color>
 
     <color name="ml_text_white">#ffffff</color>
-    <color name="ml_gray" >#9c9c9c</color>
+    <color name="ml_gray">#9c9c9c</color>
     <color name="ml_yellow">#ff842d</color>
     <color name="ml_blue">#0a95ff</color>
 </resources>

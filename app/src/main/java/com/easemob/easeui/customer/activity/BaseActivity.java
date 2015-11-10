@@ -2,6 +2,7 @@ package com.easemob.easeui.customer.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 /**
  * Class ${FILE_NAME}
@@ -10,7 +11,9 @@ import android.support.v7.app.AppCompatActivity;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    public AppCompatActivity mActivity;
+    public BaseActivity mActivity;
+
+    public Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
