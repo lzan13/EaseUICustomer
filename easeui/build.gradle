@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 20
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '22.0.1'
 
     defaultConfig {
         minSdkVersion 9
@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:22.2.+'
+    compile 'com.android.support:support-v4:20.+'
     compile files('libs/baidumapapi_v3_2_0.jar')
     compile files('libs/easemobchat_2.2.3.jar')
     compile files('libs/google-play-services.jar')
