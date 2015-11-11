@@ -18,6 +18,7 @@ public class SettingActivity extends BaseActivity {
     private View mRootView;
     private TextView mAppkeyView;
     private TextView mIMCustomerView;
+    private TextView mUserInfoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +54,15 @@ public class SettingActivity extends BaseActivity {
         mRootView = findViewById(R.id.layout_setting_root);
         mAppkeyView = (TextView) findViewById(R.id.text_setting_appkey);
         mIMCustomerView = (TextView) findViewById(R.id.text_setting_im_customer);
+        mUserInfoView = (TextView) findViewById(R.id.text_setting_user_info);
+
+        mAppkeyView.setText((CharSequence) MLSPUtil.get(mActivity, CustomerConstants.C_APPKEY, ""));
+        mIMCustomerView.setText((CharSequence) MLSPUtil.get(mActivity, CustomerConstants.C_IM, ""));
+
 
         mAppkeyView.setOnClickListener(viewListener);
         mIMCustomerView.setOnClickListener(viewListener);
+        mUserInfoView.setOnClickListener(viewListener);
     }
 
 
@@ -71,6 +78,9 @@ public class SettingActivity extends BaseActivity {
                     break;
                 case R.id.text_setting_im_customer:
                     changeIMCustomer();
+                    break;
+                case R.id.text_setting_user_info:
+                    changeUserInfo();
                     break;
             }
         }
@@ -109,6 +119,13 @@ public class SettingActivity extends BaseActivity {
         });
 
         dialog.show();
+    }
+
+    /**
+     * 修改账户信息
+     */
+    private void changeUserInfo() {
+        Snackbar.make(mRootView, "暂未实现修改用户信息界面", Snackbar.LENGTH_LONG).show();
     }
 
 

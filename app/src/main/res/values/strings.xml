@@ -17,6 +17,7 @@
     <string name="action_setting">设置</string>
     <string name="action_setting_appkey">appkey</string>
     <string name="action_setting_im_customer">客服关联账户</string>
+    <string name="action_setting_user_info">账户信息</string>
 
     <string name="error_field_required">此项必须输入</string>
 

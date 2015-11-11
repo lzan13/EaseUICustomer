@@ -64,6 +64,30 @@
             android:paddingLeft="8dp"
             android:textSize="18sp" />
 
+        <!--用户个人信息设置-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/action_setting_user_info"
+            android:textColor="@color/ml_blue"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/ml_blue" />
+
+        <TextView
+            android:id="@+id/text_setting_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:hint="@string/action_setting_user_info"
+            android:paddingLeft="8dp"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
 </LinearLayout>

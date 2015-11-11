@@ -8,6 +8,8 @@ import android.view.View;
 
 import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.customer.R;
+import com.easemob.easeui.customer.application.CustomerConstants;
+import com.easemob.easeui.customer.util.MLSPUtil;
 
 public class DetailActivity extends BaseActivity {
 
@@ -29,8 +31,8 @@ public class DetailActivity extends BaseActivity {
      */
     private void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.widget_toolbar);
-
-        mToolbar.setTitle(R.string.title_activity_detail);
+        String item = getIntent().getStringExtra("item");
+        mToolbar.setTitle(item);
         mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.ml_text_white));
         setSupportActionBar(mToolbar);
@@ -68,16 +70,17 @@ public class DetailActivity extends BaseActivity {
                     Intent intent = new Intent();
                     intent.setClass(mActivity, ChatActivity.class);
                     // 这个在使用EaseChatFragment时，传入的username参数key必须用EaseUI定义的，否则会报错
-                    intent.putExtra(EaseConstant.EXTRA_USER_ID, "lz_customer");
+                    String username = (String) MLSPUtil.get(mActivity, CustomerConstants.C_IM, "");
+                    intent.putExtra(EaseConstant.EXTRA_USER_ID, username);
                     mActivity.startActivity(intent);
                     break;
                 case R.id.action_join_in_shopping_cart:
                     // 加入购物车弹出，无具体实现
-                    Snackbar.make(mJoinInShoppingCartView, "", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(mActivity.getWindow().getDecorView(), "咱不支持加入购物车", Snackbar.LENGTH_SHORT).show();
                     break;
                 case R.id.action_buy_now:
                     // 立即购买弹出提示，无具体操作
-                    Snackbar.make(mBuyNowView, "", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(mActivity.getWindow().getDecorView(), "咱不支持购买", Snackbar.LENGTH_SHORT).show();
                     break;
             }
         }

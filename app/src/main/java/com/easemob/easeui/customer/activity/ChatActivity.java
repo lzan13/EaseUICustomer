@@ -32,13 +32,13 @@ public class ChatActivity extends BaseActivity {
         mToolbar.setTitle("客服");
         mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.ml_text_white));
+        setSupportActionBar(mToolbar);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        setSupportActionBar(mToolbar);
     }
 
     /**
