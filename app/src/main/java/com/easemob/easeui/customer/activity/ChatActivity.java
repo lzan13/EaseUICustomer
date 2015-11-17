@@ -7,11 +7,11 @@ import android.view.View;
 
 import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.customer.R;
-import com.easemob.easeui.ui.EaseChatFragment;
+import com.easemob.easeui.customer.fragment.ChatFragment;
 
 public class ChatActivity extends BaseActivity {
 
-    private EaseChatFragment mChatFragment;
+    private ChatFragment mChatFragment;
     private String mUsername;
 
     @Override
@@ -46,9 +46,8 @@ public class ChatActivity extends BaseActivity {
      */
     private void initChat() {
         mUsername = getIntent().getExtras().getString(EaseConstant.EXTRA_USER_ID);
-        mChatFragment = new EaseChatFragment();
-        mChatFragment.setArguments(getIntent().getExtras());
-        getSupportFragmentManager().beginTransaction().add(R.id.layout_container, mChatFragment).commit();
+        mChatFragment = ChatFragment.newInstance(EaseConstant.EXTRA_USER_ID);
+        getFragmentManager().beginTransaction().add(R.id.layout_container, mChatFragment).commit();
 
     }
 
@@ -56,7 +55,7 @@ public class ChatActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
         // hideTitleBar必须在onStart方法调用，因为EaseChatFragment的titileBar是在onActivityCreate方法里初始化的
-        mChatFragment.hideTitleBar();
+//        mChatFragment.hideTitleBar();
     }
 
     @Override
