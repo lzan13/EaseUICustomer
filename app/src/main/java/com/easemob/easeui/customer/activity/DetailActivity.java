@@ -76,11 +76,11 @@ public class DetailActivity extends BaseActivity {
                     break;
                 case R.id.action_join_in_shopping_cart:
                     // 加入购物车弹出，无具体实现
-                    Snackbar.make(mActivity.getWindow().getDecorView(), "咱不支持加入购物车", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(mActivity.getWindow().getDecorView(), "暂不支持加入购物车", Snackbar.LENGTH_SHORT).show();
                     break;
                 case R.id.action_buy_now:
                     // 立即购买弹出提示，无具体操作
-                    Snackbar.make(mActivity.getWindow().getDecorView(), "咱不支持购买", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(mActivity.getWindow().getDecorView(), "暂不支持购买", Snackbar.LENGTH_SHORT).show();
                     break;
             }
         }

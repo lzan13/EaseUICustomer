@@ -79,7 +79,7 @@ public class SplashActivity extends BaseActivity {
      * 初始化app数据
      */
     private void initData() {
-        MLSPUtil.put(mActivity, CustomerConstants.C_APPKEY, "lzan13#hxsdkdemo");
+        MLSPUtil.put(mActivity, CustomerConstants.C_APPKEY, "duchao#beyond");
         MLSPUtil.put(mActivity, CustomerConstants.C_IM, "lz_customer");
         MLSPUtil.put(mActivity, CustomerConstants.C_TRUENAME, "立正");
         MLSPUtil.put(mActivity, CustomerConstants.C_USERNICKNAME, "风中小裤衩");
