@@ -2,17 +2,20 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <!--状态栏颜色 -->
+        <item name="colorPrimaryDark">@color/ml_primary_dark</item>
         <!--Toolbar 颜色-->
         <item name="colorPrimary">@color/ml_primary</item>
         <!--Toolbar字体颜色-->
         <item name="android:textColorPrimary">@color/ml_text_primary</item>
-        <!--状态栏颜色 -->
-        <item name="colorPrimaryDark">@color/ml_primary_dark</item>
 
         <!--表示CheckBox、EditText、Switch、Spinner、RadioButton等控件激活时候的色调-->
         <item name="colorAccent">@color/ml_accent</item>
         <!--同上-->
         <item name="colorControlActivated">@color/ml_accent</item>
+
+        <item name="android:textColor">@color/ml_text_black</item>
 
 
     </style>

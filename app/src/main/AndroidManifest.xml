@@ -82,6 +82,13 @@
             android:name="EASEMOB_APPKEY"
             android:value="lzan13#hxsdkdemo" />
 
+        <!--配置EaseUI库里的Activity类-->
+        <!-- 显示下载大图页面 -->
+        <activity
+            android:name="com.easemob.easeui.ui.EaseShowBigImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"></activity>
+
     </application>
 
 </manifest>
