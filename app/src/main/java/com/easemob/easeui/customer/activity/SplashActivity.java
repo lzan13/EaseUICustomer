@@ -13,10 +13,11 @@ import com.easemob.easeui.customer.util.MLSPUtil;
 
 public class SplashActivity extends BaseActivity {
 
-    private int mTime = 2000;
+    private int mTime = 3000;
     private int mDurationTime = 1500;
 
     private View mRootView;
+    private View mImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,10 @@ public class SplashActivity extends BaseActivity {
      */
     private void initView() {
         mRootView = findViewById(R.id.layout_root);
+        mImageView = findViewById(R.id.img_splash);
         AlphaAnimation animation = new AlphaAnimation(0.1f, 1.0f);
         animation.setDuration(mDurationTime);
-        mRootView.startAnimation(animation);
+        mImageView.startAnimation(animation);
     }
 
     @Override
@@ -45,8 +47,6 @@ public class SplashActivity extends BaseActivity {
                 if (CustomerHelper.getInstance().isLogined()) {
                     // 获取当前系统时间毫秒数
                     long start = System.currentTimeMillis();
-                    // 初始化数据
-                    initData();
                     // 加载本地会话到内存
                     EMChatManager.getInstance().loadAllConversations();
                     // 获取加载回话使用的时间差 毫秒表示
@@ -62,6 +62,8 @@ public class SplashActivity extends BaseActivity {
                     startActivity(new Intent(mActivity, MainActivity.class));
                 } else {
                     try {
+                        // 初始化数据
+                        initData();
                         // 睡眠3000毫秒
                         Thread.sleep(mTime);
                     } catch (InterruptedException e) {

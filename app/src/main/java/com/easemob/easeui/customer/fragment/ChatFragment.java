@@ -2,30 +2,13 @@ package com.easemob.easeui.customer.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatDialog;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 
-import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMMessage;
 import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.customer.R;
 import com.easemob.easeui.ui.EaseChatFragment;
 import com.easemob.easeui.widget.EaseChatExtendMenu;
-import com.easemob.easeui.widget.EaseChatInputMenu;
-import com.easemob.easeui.widget.EaseChatMessageList;
-import com.easemob.easeui.widget.EaseVoiceRecorderView;
-import com.easemob.easeui.widget.chatrow.EaseCustomChatRowProvider;
 
 /**
  * 自定义ChatFragment类
@@ -39,8 +22,8 @@ public class ChatFragment extends EaseChatFragment {
     private String mUserId;
     private ListView mAnswerListView;
 
-    protected int[] itemStrings = {com.easemob.easeui.R.string.attach_take_pic, com.easemob.easeui.R.string.attach_picture, R.string.input_menu_answer};
-    protected int[] itemdrawables = {com.easemob.easeui.R.drawable.ease_chat_takepic_selector, com.easemob.easeui.R.drawable.ease_chat_image_selector, R.drawable.bg_customer_answer};
+    protected int[] itemStrings = {R.string.input_menu_camera, R.string.input_menu_photo, R.string.input_menu_answer};
+    protected int[] itemdrawables = {R.drawable.btn_customer_camera, R.drawable.btn_customer_photo, R.drawable.btn_customer_answer};
     protected int[] itemIds = {1, 2, 11};
 
 
@@ -75,6 +58,7 @@ public class ChatFragment extends EaseChatFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mActivity = getActivity();
+        initView();
     }
 
 
@@ -87,6 +71,7 @@ public class ChatFragment extends EaseChatFragment {
             inputMenu.registerExtendMenuItem(itemStrings[i], itemdrawables[i], itemIds[i], new CustomerItemClickListener());
         }
     }
+
 
     /**
      * 扩展菜单栏item点击事件
@@ -120,14 +105,12 @@ public class ChatFragment extends EaseChatFragment {
     }
 
     /**
-     * 打算用来获取输入框，好像不行
+     * 发送常用回复
      *
-     * @return
+     * @param content
      */
-    public View getInputView() {
-//        打算用来获取输入框，好像不行
-//        EditText editText = this.inputMenu.chatPrimaryMenu.findViewById(R.id.et_sendmessage);
-        return null;
+    public void sendAnswer(String content) {
+        sendTextMessage(content);
     }
 
     @Override

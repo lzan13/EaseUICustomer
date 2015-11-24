@@ -12,7 +12,7 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/MLTheme.PupopMenu"
-        app:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+        app:theme="@style/MLTheme.Toolbar">
 
     </android.support.v7.widget.Toolbar>
 </LinearLayout>

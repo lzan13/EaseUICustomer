@@ -31,6 +31,7 @@ public class MainActivity extends BaseActivity {
         mToolbar = (Toolbar) findViewById(R.id.widget_toolbar);
 
         String nickName = (String) MLSPUtil.get(mActivity, CustomerConstants.C_USERNICKNAME, "");
+//        mToolbar.setTitleTextColor(R.color.ml_text_primary);
         mToolbar.setTitle(nickName);
         mToolbar.setNavigationIcon(R.mipmap.ic_avatar_01);
         setSupportActionBar(mToolbar);

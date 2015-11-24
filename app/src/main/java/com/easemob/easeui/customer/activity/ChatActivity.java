@@ -80,8 +80,9 @@ public class ChatActivity extends BaseActivity implements ChatFragment.CustomerF
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                mPopupWindow.dismiss();
 //                mChatFragment.getin
-                Snackbar.make(mActivity.getWindow().getDecorView(), "",
-                        Snackbar.LENGTH_SHORT).show();
+//                Snackbar.make(mActivity.getWindow().getDecorView(), "", Snackbar.LENGTH_SHORT).show();
+                mChatFragment.sendAnswer(mAnswers[position]);
+                mAnswerView.setVisibility(View.VISIBLE);
             }
         });
 

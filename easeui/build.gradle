@@ -20,6 +20,7 @@ android {
 }
 
 dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:support-v4:22.+'
     compile files('libs/baidumapapi_v3_2_0.jar')
     compile files('libs/easemobchat_2.2.3.jar')

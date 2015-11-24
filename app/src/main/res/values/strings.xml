@@ -20,6 +20,9 @@
     <string name="action_setting_user_info">账户信息</string>
 
     <string name="error_field_required">此项必须输入</string>
+
+    <string name="input_menu_photo">照片</string>
+    <string name="input_menu_camera">相机</string>
     <string name="input_menu_answer">常用语</string>
 
     <string name="input_limit">0123456789abcdefghigklmnopqrstuvwxyz</string>
