@@ -3,7 +3,12 @@ package com.easemob.easeui.customer.application;
 import android.content.Context;
 
 import com.easemob.chat.EMChat;
+import com.easemob.chat.EMMessage;
 import com.easemob.easeui.controller.EaseUI;
+import com.easemob.exceptions.EaseMobException;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Class ${FILE_NAME}
@@ -54,5 +59,68 @@ public class CustomerHelper {
      */
     public boolean isLogined() {
         return EMChat.getInstance().isLoggedIn();
+    }
+
+    /**
+     * 判断是否为满意度调查类型的消息
+     *
+     * @param message
+     * @return
+     */
+    public boolean isCtrlTypeMessage(EMMessage message) {
+        JSONObject jsonObj = null;
+        try {
+            jsonObj = message.getJSONObjectAttribute(CustomerConstants.C_ATTR_KEY_WEICHAT);
+            if (jsonObj.has(CustomerConstants.C_ATTR_CTRLTYPE)) {
+                String type = jsonObj.getString(CustomerConstants.C_ATTR_CTRLTYPE);
+                if (type.equalsIgnoreCase(CustomerConstants.C_ATTR_INVITEENQUIRY)
+                        || type.equalsIgnoreCase(CustomerConstants.C_ATTR_ENQUIRY)) {
+                    return true;
+                }
+            }
+        } catch (EaseMobException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * 判断是否为用户轨迹类型的消息
+     *
+     * @param message
+     * @return
+     */
+    public boolean isTrackMessage(EMMessage message) {
+        JSONObject jsonObj = null;
+        try {
+            jsonObj = message.getJSONObjectAttribute(CustomerConstants.C_ATTR_KEY_MSGTYPE);
+            if (jsonObj.has(CustomerConstants.C_ATTR_TRACK)) {
+                return true;
+            }
+        } catch (EaseMobException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * 判断是否为订单消息
+     *
+     * @param message
+     * @return
+     */
+    public boolean isOrderFormMessage(EMMessage message) {
+        JSONObject jsonObj = null;
+        try {
+            jsonObj = message.getJSONObjectAttribute(CustomerConstants.C_ATTR_KEY_MSGTYPE);
+            if (jsonObj.has(CustomerConstants.C_ATTR_ORDER)) {
+                return true;
+            }
+        } catch (EaseMobException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

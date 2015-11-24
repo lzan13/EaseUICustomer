@@ -56,7 +56,8 @@ public class ChatActivity extends BaseActivity implements ChatFragment.CustomerF
      */
     private void initChat() {
         mUsername = getIntent().getExtras().getString(EaseConstant.EXTRA_USER_ID);
-        mChatFragment = ChatFragment.newInstance(EaseConstant.EXTRA_USER_ID);
+        mChatFragment = new ChatFragment();
+        mChatFragment.setArguments(getIntent().getExtras());
         getSupportFragmentManager().beginTransaction().add(R.id.layout_container, mChatFragment).commit();
 
     }
@@ -78,11 +79,8 @@ public class ChatActivity extends BaseActivity implements ChatFragment.CustomerF
         mAnswerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                mPopupWindow.dismiss();
-//                mChatFragment.getin
-//                Snackbar.make(mActivity.getWindow().getDecorView(), "", Snackbar.LENGTH_SHORT).show();
                 mChatFragment.sendAnswer(mAnswers[position]);
-                mAnswerView.setVisibility(View.VISIBLE);
+                mAnswerView.setVisibility(View.GONE);
             }
         });
 
