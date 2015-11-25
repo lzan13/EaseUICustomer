@@ -13,10 +13,12 @@ import com.easemob.easeui.customer.util.MLSPUtil;
 
 public class SplashActivity extends BaseActivity {
 
+    // 开屏页持续时间
     private int mTime = 3000;
+    // 动画持续时间
     private int mDurationTime = 1500;
 
-    private View mRootView;
+    // 开屏页显示的图片控件
     private View mImageView;
 
     @Override
@@ -32,7 +34,6 @@ public class SplashActivity extends BaseActivity {
      * 初始化当前界面的控件
      */
     private void initView() {
-        mRootView = findViewById(R.id.layout_root);
         mImageView = findViewById(R.id.img_splash);
         AlphaAnimation animation = new AlphaAnimation(0.1f, 1.0f);
         animation.setDuration(mDurationTime);
@@ -83,11 +84,12 @@ public class SplashActivity extends BaseActivity {
     private void initData() {
         MLSPUtil.put(mActivity, CustomerConstants.C_APPKEY, "lzan13#hxsdkdemo");
         MLSPUtil.put(mActivity, CustomerConstants.C_IM, "lz_customer");
-        MLSPUtil.put(mActivity, CustomerConstants.C_TRUENAME, "立正");
-        MLSPUtil.put(mActivity, CustomerConstants.C_USERNICKNAME, "风中小裤衩");
-        MLSPUtil.put(mActivity, CustomerConstants.C_DESCRIPTION, "风中的裤衩，孤孤单单，迎风飘扬");
-        MLSPUtil.put(mActivity, CustomerConstants.C_QQ, "1565176197");
-        MLSPUtil.put(mActivity, CustomerConstants.C_EMAIL, "lzan13@easemob.com");
+        MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_AVATAR, "http://lzan13.qiniudn.com/image/lz_bp_blue.png");
+        MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_TRUENAME, "我");
+        MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_USERNICKNAME, "风中小裤衩");
+        MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_DESCRIPTION, "风中的裤衩，孤孤单单，迎风飘扬");
+        MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_QQ, "1565176197");
+        MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_EMAIL, "lzan13@easemob.com");
 
     }
 }

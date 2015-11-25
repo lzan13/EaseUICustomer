@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.easemob.EMCallBack;
+import com.easemob.chat.EMChat;
 import com.easemob.chat.EMChatManager;
 import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.util.MLLog;
@@ -30,8 +31,6 @@ public class LoginActivity extends BaseActivity {
     private EditText mUsernameView;
     private EditText mPasswordView;
     private Button mSigninButton;
-    private View mProgressView;
-    private View mLoginFormView;
 
     private String mUsername;
     private String mPassword;
@@ -41,7 +40,6 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mLoginFormView = findViewById(R.id.layout_login_form);
         mUsernameView = (EditText) findViewById(R.id.text_login_username);
         mPasswordView = (EditText) findViewById(R.id.text_login_password);
 
@@ -65,7 +63,6 @@ public class LoginActivity extends BaseActivity {
         mUsernameView.setError(null);
         mPasswordView.setError(null);
 
-        // Store values at the time of the login attempt.
         mUsername = mUsernameView.getText().toString();
         mPassword = mPasswordView.getText().toString();
 
@@ -104,8 +101,14 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onSuccess() {
                 mDialog.dismiss();
+                // 登录成功保存登录信息
                 MLSPUtil.put(mActivity, "username", mUsername);
                 MLSPUtil.put(mActivity, "password", mPassword);
+
+                // 加载所有会话到内存
+                EMChatManager.getInstance().loadAllConversations();
+
+                // 登录成功跳转到主界面
                 Intent intent = new Intent();
                 intent.setClass(mActivity, MainActivity.class);
                 mActivity.startActivity(intent);

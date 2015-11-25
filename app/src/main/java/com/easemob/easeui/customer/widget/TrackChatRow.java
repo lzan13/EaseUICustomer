@@ -11,6 +11,7 @@ import com.easemob.chat.EMMessage;
 import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.activity.DetailActivity;
 import com.easemob.easeui.customer.application.CustomerConstants;
+import com.easemob.easeui.customer.util.MLSPUtil;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.DensityUtil;
@@ -27,13 +28,17 @@ public class TrackChatRow extends EaseChatRow {
 
     private ImageView mAvatarView;
     private ImageView mTrackImageView;
-    private TextView mTrackTitle;
-    private TextView mShopDesc;
+    private TextView mTrackTitleView;
+    private TextView mShopDescView;
+    private TextView mShopPriceView;
 
     public TrackChatRow(Context context, EMMessage message, int position, BaseAdapter adapter) {
         super(context, message, position, adapter);
     }
 
+    /**
+     * 根据消息类型填充布局
+     */
     @Override
     protected void onInflatView() {
         inflater.inflate(message.direct == EMMessage.Direct.RECEIVE
@@ -48,8 +53,9 @@ public class TrackChatRow extends EaseChatRow {
     protected void onFindViewById() {
         mAvatarView = (ImageView) findViewById(R.id.iv_userhead);
         mTrackImageView = (ImageView) findViewById(R.id.img_track_image);
-        mTrackTitle = (TextView) findViewById(R.id.text_track_title);
-        mShopDesc = (TextView) findViewById(R.id.text_shop_desc);
+        mTrackTitleView = (TextView) findViewById(R.id.text_track_title);
+        mShopDescView = (TextView) findViewById(R.id.text_shop_desc);
+        mShopPriceView = (TextView) findViewById(R.id.text_shop_price);
     }
 
     @Override
@@ -71,15 +77,21 @@ public class TrackChatRow extends EaseChatRow {
                 String desc = track.getString("desc");
                 String imgUrl = track.getString("img_url");
                 String itemUrl = track.getString("item_url");
+                // 设置聊天气泡用户头像
+                Picasso.with(context)
+                        .load((String) MLSPUtil.get(context, CustomerConstants.C_USER_KEY_AVATAR, ""))
+                        .placeholder(R.mipmap.ic_avatar_02)
+                        .into(mAvatarView);
                 // 设置商品图片显示
                 Picasso.with(context)
                         .load(imgUrl)
-                        .resize(DensityUtil.dip2px(context, 120), DensityUtil.dip2px(context, 120))
+                        .resize(DensityUtil.dip2px(context, 90), DensityUtil.dip2px(context, 90))
                         .placeholder(R.mipmap.ic_avatar_01)
                         .into(mTrackImageView);
 
-                mTrackTitle.setText(title);
-                mShopDesc.setText(desc);
+                mTrackTitleView.setText(title);
+                mShopDescView.setText(desc);
+                mShopPriceView.setText(price);
                 this.setTag(itemUrl);
             }
         } catch (EaseMobException e) {
@@ -89,6 +101,9 @@ public class TrackChatRow extends EaseChatRow {
         }
     }
 
+    /**
+     * 聊天气泡点击事件
+     */
     @Override
     protected void onBubbleClick() {
         Intent intent = new Intent();

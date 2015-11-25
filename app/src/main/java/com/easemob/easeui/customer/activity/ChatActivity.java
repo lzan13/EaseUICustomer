@@ -16,12 +16,18 @@ import com.easemob.easeui.customer.fragment.ChatFragment;
 
 public class ChatActivity extends BaseActivity implements ChatFragment.CustomerFragmentListener {
 
+    // 通过Fragment的方式加聊天界面
     private ChatFragment mChatFragment;
+    // 会话者
     private String mUsername;
+    // 常用语View
     private View mAnswerView;
+    // 常用语关闭按钮
     private Button mCloseBtn;
+    // 常用语展示listview
     private ListView mAnswerListView;
 
+    // 模拟常用回复数据
     private String[] mAnswers = {"亲，你们包邮么？", "默认发什么快递呢？", "亲，这件还有货么？", "亲，希望赶快发货哦！"};
 
     @Override
@@ -113,7 +119,7 @@ public class ChatActivity extends BaseActivity implements ChatFragment.CustomerF
     }
 
     /**
-     * 实现ChatFragment的回调方法
+     * 实现ChatFragment的回调方法，用来给Fragment调用，实现Activity和Fragment的通讯
      *
      * @param i
      */

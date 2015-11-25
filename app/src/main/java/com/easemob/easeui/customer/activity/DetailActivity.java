@@ -14,10 +14,15 @@ import com.easemob.easeui.customer.application.CustomerConstants;
 import com.easemob.easeui.customer.entity.ShopEntity;
 import com.easemob.easeui.customer.util.MLSPUtil;
 
+/**
+ * 商品详情类
+ */
 public class DetailActivity extends BaseActivity {
 
+    // 这里用webview实现模拟加载商品详情，
     private WebView mWebView;
     private ShopEntity mShopEntity;
+    // 当前选择的商品
     private String mCurrentItem;
 
     private View mChatView;

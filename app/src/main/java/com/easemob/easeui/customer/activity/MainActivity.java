@@ -13,7 +13,10 @@ import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.application.CustomerConstants;
 import com.easemob.easeui.customer.util.MLSPUtil;
 
-
+/**
+ * 程序主界面，主要模拟实现商品的列表展示，以及设置界面的跳转等功能
+ * TODO (lzan13) 聊天信息的监听，
+ */
 public class MainActivity extends BaseActivity {
 
     @Override
@@ -30,7 +33,7 @@ public class MainActivity extends BaseActivity {
     private void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.widget_toolbar);
 
-        String nickName = (String) MLSPUtil.get(mActivity, CustomerConstants.C_USERNICKNAME, "");
+        String nickName = (String) MLSPUtil.get(mActivity, CustomerConstants.C_USER_KEY_USERNICKNAME, "");
 //        mToolbar.setTitleTextColor(R.color.ml_text_primary);
         mToolbar.setTitle(nickName);
         mToolbar.setNavigationIcon(R.mipmap.ic_avatar_01);
@@ -88,6 +91,9 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 商品列表点击事件，这里是跳转到商品详情页，并传递参数
+     */
     private View.OnClickListener viewListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

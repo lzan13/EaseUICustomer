@@ -31,25 +31,16 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 
     private Activity mActivity;
 
+    // ChatFragment 回调函数，由Activity实现，用来和Activity实现通讯
     private CustomerFragmentListener mFragmentListener;
 
     private String mCurrentItem;
 
-    private String mUserId;
-    private ListView mAnswerListView;
-
+    // 扩展菜单数据
     protected int[] itemStrings = {R.string.input_menu_camera, R.string.input_menu_photo, R.string.input_menu_answer};
     protected int[] itemdrawables = {R.drawable.btn_customer_camera, R.drawable.btn_customer_photo, R.drawable.btn_customer_answer};
     protected int[] itemIds = {1, 2, 11};
 
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mUserId = getArguments().getString(EaseConstant.EXTRA_USER_ID);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -95,6 +86,11 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     }
 
 
+    /**
+     * 设置消息扩展
+     *
+     * @param message
+     */
     @Override
     public void onSetMessageAttributes(EMMessage message) {
 
@@ -245,6 +241,11 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         sendTextMessage(content);
     }
 
+    /**
+     * 发送包含用户轨迹信息
+     *
+     * @param item
+     */
     public void sendTrackMessage(int item) {
         ShopEntity shopEntity = new ShopEntity(item);
 
