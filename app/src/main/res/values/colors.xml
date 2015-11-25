@@ -6,10 +6,13 @@
 
     <color name="ml_accent">#4899fc</color>
 
+    <color name="ml_text_red">#ff3f43</color>
     <color name="ml_text_white">#ffffff</color>
     <color name="ml_text_black">#232323</color>
     <color name="ml_white">#ffffff</color>
     <color name="ml_gray">#9c9c9c</color>
     <color name="ml_yellow">#ff842d</color>
     <color name="ml_blue">#0a95ff</color>
+
+    <color name="ml_bg_text_black">#a8232323</color>
 </resources>

@@ -12,10 +12,17 @@ import com.easemob.chat.EMMessage;
 import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.application.CustomerHelper;
+import com.easemob.easeui.customer.entity.ShopEntity;
+import com.easemob.easeui.customer.widget.CtrlTypeChatRow;
+import com.easemob.easeui.customer.widget.OrderChatRow;
+import com.easemob.easeui.customer.widget.TrackChatRow;
 import com.easemob.easeui.ui.EaseChatFragment;
 import com.easemob.easeui.widget.EaseChatExtendMenu;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.easeui.widget.chatrow.EaseCustomChatRowProvider;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * 自定义ChatFragment类
@@ -25,6 +32,8 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     private Activity mActivity;
 
     private CustomerFragmentListener mFragmentListener;
+
+    private String mCurrentItem;
 
     private String mUserId;
     private ListView mAnswerListView;
@@ -51,6 +60,21 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mActivity = getActivity();
+        mCurrentItem = getArguments().getString("item");
+        if (mCurrentItem != null) {
+            sendTrackMessage(Integer.valueOf(mCurrentItem));
+        }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mFragmentListener = (CustomerFragmentListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
@@ -59,14 +83,6 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         super.setUpView();
     }
 
-    /**
-     * 发送常用回复
-     *
-     * @param content
-     */
-    public void sendAnswer(String content) {
-        sendTextMessage(content);
-    }
 
     /**
      * 注册扩展菜单，这里不调用父类的方法
@@ -100,7 +116,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     }
 
     /**
-     * 消息框点击事件
+     * 消息气泡点击事件
      *
      * @param message
      * @return
@@ -138,55 +154,76 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
                 mFragmentListener.onFragmentInteraction(11);
                 break;
             default:
+
                 break;
         }
         return false;
     }
 
+
+    /**
+     * 设置自定义消息提供者
+     *
+     * @return
+     */
     @Override
     public EaseCustomChatRowProvider onSetCustomChatRowProvider() {
         return new CustomChatRowProvider();
     }
 
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mFragmentListener = (CustomerFragmentListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
     /**
-     * chat row provider
+     * 自定义实现ChatRow提供者
      */
     class CustomChatRowProvider implements EaseCustomChatRowProvider {
+        /**
+         * 返回自定义消息的个数
+         *
+         * @return
+         */
         @Override
         public int getCustomChatRowTypeCount() {
-
             return 4;
         }
 
+        /**
+         * 返回消息的类型
+         *
+         * @param message
+         * @return
+         */
         @Override
         public int getCustomChatRowType(EMMessage message) {
             if (message.getType() == EMMessage.Type.TXT) {
                 if (CustomerHelper.getInstance().isCtrlTypeMessage(message)) {
-
+                    return message.direct == EMMessage.Direct.RECEIVE ? 1 : 2;
                 } else if (CustomerHelper.getInstance().isTrackMessage(message)) {
-                    return message.direct == EMMessage.Direct.RECEIVE ? 1 : 2;
+                    return message.direct == EMMessage.Direct.RECEIVE ? 3 : 4;
                 } else if (CustomerHelper.getInstance().isOrderFormMessage(message)) {
-                    return message.direct == EMMessage.Direct.RECEIVE ? 1 : 2;
+                    return message.direct == EMMessage.Direct.RECEIVE ? 5 : 6;
                 }
             }
             return 0;
         }
 
+        /**
+         * 返回自定义消息的实现
+         *
+         * @param message
+         * @param position
+         * @param adapter
+         * @return
+         */
         @Override
         public EaseChatRow getCustomChatRow(EMMessage message, int position, BaseAdapter adapter) {
-
+            if (message.getType() == EMMessage.Type.TXT) {
+                if (CustomerHelper.getInstance().isCtrlTypeMessage(message)) {
+                    return new CtrlTypeChatRow(mActivity, message, position, adapter);
+                } else if (CustomerHelper.getInstance().isTrackMessage(message)) {
+                    return new TrackChatRow(mActivity, message, position, adapter);
+                } else if (CustomerHelper.getInstance().isOrderFormMessage(message)) {
+                    return new OrderChatRow(mActivity, message, position, adapter);
+                }
+            }
             return null;
         }
     }
@@ -197,5 +234,34 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     public interface CustomerFragmentListener {
         public void onFragmentInteraction(int i);
 
+    }
+
+    /**
+     * 发送常用回复
+     *
+     * @param content
+     */
+    public void sendAnswer(String content) {
+        sendTextMessage(content);
+    }
+
+    public void sendTrackMessage(int item) {
+        ShopEntity shopEntity = new ShopEntity(item);
+
+        EMMessage message = EMMessage.createTxtSendMessage("客服图文混排消息", toChatUsername);
+        JSONObject jsonMsgType = new JSONObject();
+        JSONObject jsonTrack = new JSONObject();
+        try {
+            jsonTrack.put("title", shopEntity.getShopTitle());
+            jsonTrack.put("price", shopEntity.getShopPrice());
+            jsonTrack.put("desc", shopEntity.getShopDesc());
+            jsonTrack.put("img_url", shopEntity.getShopImageUrl());
+            jsonTrack.put("item_url", shopEntity.getShopUrl());
+            jsonMsgType.put("track", jsonTrack);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        message.setAttribute("msgtype", jsonMsgType);
+        sendMessage(message);
     }
 }

@@ -53,8 +53,6 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.item_04).setOnClickListener(viewListener);
         findViewById(R.id.item_05).setOnClickListener(viewListener);
         findViewById(R.id.item_06).setOnClickListener(viewListener);
-        findViewById(R.id.item_07).setOnClickListener(viewListener);
-        findViewById(R.id.item_08).setOnClickListener(viewListener);
     }
 
     @Override
@@ -74,6 +72,7 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent();
         switch (item.getItemId()) {
             case R.id.action_message:
+                // 点击直接和客服联系
                 intent.setClass(mActivity, ChatActivity.class);
                 // 这个在使用EaseChatFragment时，传入的username参数key必须用EaseUI定义的，否则会报错
                 String username = (String) MLSPUtil.get(mActivity, CustomerConstants.C_IM, "");
@@ -81,6 +80,7 @@ public class MainActivity extends BaseActivity {
                 mActivity.startActivity(intent);
                 break;
             case R.id.action_setting:
+                // 进入设置界面
                 intent.setClass(mActivity, SettingActivity.class);
                 mActivity.startActivity(intent);
                 break;
@@ -92,31 +92,28 @@ public class MainActivity extends BaseActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent();
-            String item = "商品";
+            String item = "item";
             switch (v.getId()) {
                 case R.id.item_01:
-                    item = "商品01";
+                    item = "1";
                     break;
                 case R.id.item_02:
-                    item = "商品02";
+                    item = "2";
                     break;
                 case R.id.item_03:
-                    item = "商品03";
+                    item = "3";
                     break;
                 case R.id.item_04:
-                    item = "商品04";
+                    item = "4";
                     break;
                 case R.id.item_05:
-                    item = "商品05";
+                    item = "5";
                     break;
                 case R.id.item_06:
-                    item = "商品06";
+                    item = "6";
                     break;
-                case R.id.item_07:
-                    item = "商品07";
-                    break;
-                case R.id.item_08:
-                    item = "商品08";
+                default:
+                    item = "6";
                     break;
             }
             intent.setClass(mActivity, DetailActivity.class);

@@ -5,8 +5,13 @@
     android:layout_height="match_parent"
     tools:context="com.easemob.easeui.customer.activity.DetailActivity">
 
+    <WebView
+        android:id="@+id/webview_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></WebView>
     <!--包含Toolbar-->
     <include layout="@layout/widget_toolbar" />
+
 
     <!--底部操作条-->
     <RelativeLayout
@@ -19,11 +24,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:background="@color/ml_gray" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -35,11 +35,6 @@
                     android:layout_height="wrap_content"
                     android:background="@color/ml_primary"
                     android:src="@mipmap/ic_message_white" />
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:background="@color/ml_gray" />
 
                 <Button
                     android:id="@+id/action_join_in_shopping_cart"
