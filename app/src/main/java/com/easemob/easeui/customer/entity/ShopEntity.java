@@ -5,12 +5,12 @@ package com.easemob.easeui.customer.entity;
  * 商品实体类，模拟商城软件的一些数据
  */
 public class ShopEntity {
-    int item;
-    String shopTitle;
-    String shopDesc;
-    String shopPrice;
-    String shopImageUrl;
-    String shopUrl;
+    private int item;
+    private String shopTitle;
+    private String shopDesc;
+    private String shopPrice;
+    private String shopImageUrl;
+    private String shopUrl;
 
     public ShopEntity(int item) {
         setItem(item);

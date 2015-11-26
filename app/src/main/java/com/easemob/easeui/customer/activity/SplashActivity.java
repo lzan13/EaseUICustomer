@@ -84,8 +84,13 @@ public class SplashActivity extends BaseActivity {
     private void initData() {
         MLSPUtil.put(mActivity, CustomerConstants.C_APPKEY, "lzan13#hxsdkdemo");
         MLSPUtil.put(mActivity, CustomerConstants.C_IM, "lz_customer");
+
+        MLSPUtil.put(mActivity, CustomerConstants.C_IS_FIRST_CUSTOMER, true);
+
+        // 模拟user信息数据
         MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_AVATAR, "http://lzan13.qiniudn.com/image/lz_bp_blue.png");
         MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_TRUENAME, "我");
+        MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_COMPANYNAME, "环信");
         MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_USERNICKNAME, "风中小裤衩");
         MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_DESCRIPTION, "风中的裤衩，孤孤单单，迎风飘扬");
         MLSPUtil.put(mActivity, CustomerConstants.C_USER_KEY_QQ, "1565176197");

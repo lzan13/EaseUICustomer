@@ -90,8 +90,26 @@ public class SettingActivity extends BaseActivity {
      * 改变Appkey
      */
     private void changeAppkey() {
-        Snackbar.make(mRootView, "EaseUI暂不支持动态设置Appkey", Snackbar.LENGTH_LONG).show();
+        AlertDialog.Builder dialog = new AlertDialog.Builder(mActivity);
+        final EditText editText = new EditText(mActivity);
+        editText.setHint(R.string.dialog_title_change_appkey);
+        editText.setText((CharSequence) MLSPUtil.get(mActivity, CustomerConstants.C_APPKEY, ""));
+        dialog.setTitle(R.string.dialog_title_change_im_customer);
+        dialog.setView(editText);
+        dialog.setNegativeButton("取消", null);
+        dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // 保存新设置的IM关联号
+                MLSPUtil.put(mActivity, CustomerConstants.C_APPKEY, editText.getText().toString());
+                Snackbar.make(mRootView, "Appkey保存成功，请重启app", Snackbar.LENGTH_LONG).show();
 
+                // 更新UI显示的appkey
+                mAppkeyView.setText((CharSequence) MLSPUtil.get(mActivity, CustomerConstants.C_APPKEY, ""));
+//                System.exit(0);
+            }
+        });
+        dialog.show();
     }
 
     /**
@@ -100,9 +118,9 @@ public class SettingActivity extends BaseActivity {
     private void changeIMCustomer() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(mActivity);
         final EditText editText = new EditText(mActivity);
-        editText.setHint(R.string.action_setting_im_customer);
+        editText.setHint(R.string.btn_setting_im_customer);
         editText.setText((CharSequence) MLSPUtil.get(mActivity, CustomerConstants.C_IM, ""));
-        dialog.setTitle(R.string.title_change_im_customer);
+        dialog.setTitle(R.string.dialog_title_change_im_customer);
         dialog.setView(editText);
         dialog.setNegativeButton("取消", null);
         dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -112,12 +130,10 @@ public class SettingActivity extends BaseActivity {
                 MLSPUtil.put(mActivity, CustomerConstants.C_IM, editText.getText().toString());
                 Snackbar.make(mRootView, "关联客服号保存成功", Snackbar.LENGTH_LONG).show();
 
-                // 更新UI显示的appkey和IM关联号
-                mAppkeyView.setText((CharSequence) MLSPUtil.get(mActivity, CustomerConstants.C_APPKEY, ""));
+                // 更新UI显示的IM关联号
                 mIMCustomerView.setText((CharSequence) MLSPUtil.get(mActivity, CustomerConstants.C_IM, ""));
             }
         });
-
         dialog.show();
     }
 

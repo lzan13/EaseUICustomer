@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:text="@string/action_setting_appkey"
+            android:text="@string/btn_setting_appkey"
             android:textColor="@color/ml_blue"
             android:textSize="16sp" />
 
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
-            android:hint="@string/action_setting_appkey"
+            android:hint="@string/btn_setting_appkey"
             android:paddingLeft="8dp"
             android:textSize="18sp" />
 
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="16dp"
-            android:text="@string/action_setting_im_customer"
+            android:text="@string/btn_setting_im_customer"
             android:textColor="@color/ml_blue"
             android:textSize="16sp" />
 
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
-            android:hint="@string/action_setting_im_customer"
+            android:hint="@string/btn_setting_im_customer"
             android:paddingLeft="8dp"
             android:textSize="18sp" />
 
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
             android:layout_marginTop="16dp"
-            android:text="@string/action_setting_user_info"
+            android:text="@string/btn_setting_user_info"
             android:textColor="@color/ml_blue"
             android:textSize="16sp" />
 
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center_vertical"
-            android:hint="@string/action_setting_user_info"
+            android:hint="@string/btn_setting_user_info"
             android:paddingLeft="8dp"
             android:textSize="18sp" />
 

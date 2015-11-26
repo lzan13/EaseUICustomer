@@ -10,11 +10,14 @@ public class CustomerConstants {
     public static String C_APPKEY = "appkey";
     public static String C_IM = "im";
 
+    public static String C_IS_FIRST_CUSTOMER = "isFirst";
+
     /**
      * 配置用户信息key
      */
     public static String C_USER_KEY_AVATAR = "avatar";
     public static String C_USER_KEY_TRUENAME = "trueName";
+    public static String C_USER_KEY_COMPANYNAME = "companyName";
     public static String C_USER_KEY_USERNICKNAME = "userNickname";
     public static String C_USER_KEY_DESCRIPTION = "description";
     public static String C_USER_KEY_QQ = "qq";

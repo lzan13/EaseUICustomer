@@ -5,6 +5,7 @@ import android.content.Context;
 import com.easemob.chat.EMChat;
 import com.easemob.chat.EMMessage;
 import com.easemob.easeui.controller.EaseUI;
+import com.easemob.easeui.customer.util.MLSPUtil;
 import com.easemob.exceptions.EaseMobException;
 
 import org.json.JSONException;
@@ -44,6 +45,7 @@ public class CustomerHelper {
      * @param context
      */
     public void init(Context context) {
+        EMChat.getInstance().setAppkey((String) MLSPUtil.get(context, CustomerConstants.C_APPKEY, ""));
         // 初始化EaseUI，EaseUI内部初始化了环信的SDK
         EaseUI.getInstance().init(context);
 

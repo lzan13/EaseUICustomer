@@ -6,20 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ListView;
 
 import com.easemob.chat.EMMessage;
-import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.customer.R;
+import com.easemob.easeui.customer.application.CustomerConstants;
 import com.easemob.easeui.customer.application.CustomerHelper;
+import com.easemob.easeui.customer.entity.EnquiryEntity;
 import com.easemob.easeui.customer.entity.ShopEntity;
+import com.easemob.easeui.customer.util.MLSPUtil;
 import com.easemob.easeui.customer.widget.CtrlTypeChatRow;
 import com.easemob.easeui.customer.widget.OrderChatRow;
 import com.easemob.easeui.customer.widget.TrackChatRow;
 import com.easemob.easeui.ui.EaseChatFragment;
-import com.easemob.easeui.widget.EaseChatExtendMenu;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.easeui.widget.chatrow.EaseCustomChatRowProvider;
+import com.easemob.exceptions.EaseMobException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,13 +32,14 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
 
     private Activity mActivity;
 
+
     // ChatFragment 回调函数，由Activity实现，用来和Activity实现通讯
     private CustomerFragmentListener mFragmentListener;
 
     private String mCurrentItem;
 
     // 扩展菜单数据
-    protected int[] itemStrings = {R.string.input_menu_camera, R.string.input_menu_photo, R.string.input_menu_answer};
+    protected int[] itemStrings = {R.string.btn_input_menu_camera, R.string.btn_input_menu_photo, R.string.btn_input_menu_answer};
     protected int[] itemdrawables = {R.drawable.btn_customer_camera, R.drawable.btn_customer_photo, R.drawable.btn_customer_answer};
     protected int[] itemIds = {1, 2, 11};
 
@@ -51,6 +53,7 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mActivity = getActivity();
+        mActivity.getFilesDir().getPath();
         mCurrentItem = getArguments().getString("item");
         if (mCurrentItem != null) {
             sendTrackMessage(Integer.valueOf(mCurrentItem));
@@ -93,7 +96,10 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
      */
     @Override
     public void onSetMessageAttributes(EMMessage message) {
-
+        // 设置用户信息扩展
+        setUserAttibutes(message);
+        // 调用设置技能组扩展
+        setSkillGroup(message);
     }
 
     @Override
@@ -213,7 +219,9 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         public EaseChatRow getCustomChatRow(EMMessage message, int position, BaseAdapter adapter) {
             if (message.getType() == EMMessage.Type.TXT) {
                 if (CustomerHelper.getInstance().isCtrlTypeMessage(message)) {
-                    return new CtrlTypeChatRow(mActivity, message, position, adapter);
+                    CtrlTypeChatRow ctrlTypeChatRow = new CtrlTypeChatRow(mActivity, message, position, adapter);
+                    ctrlTypeChatRow.setmChatRowListener(new MyChatRowListener());
+                    return ctrlTypeChatRow;
                 } else if (CustomerHelper.getInstance().isTrackMessage(message)) {
                     return new TrackChatRow(mActivity, message, position, adapter);
                 } else if (CustomerHelper.getInstance().isOrderFormMessage(message)) {
@@ -229,7 +237,59 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
      */
     public interface CustomerFragmentListener {
         public void onFragmentInteraction(int i);
+    }
 
+    /**
+     * 设置用户信息扩展
+     *
+     * @param message
+     */
+    private void setUserAttibutes(EMMessage message) {
+        boolean isFrist = (boolean) MLSPUtil.get(mActivity, CustomerConstants.C_IS_FIRST_CUSTOMER, false);
+        if (isFrist) {
+            JSONObject jsonWeiChat = getWeichatJSONObject(message);
+            JSONObject jsonVisitor = new JSONObject();
+            try {
+                jsonVisitor.put(CustomerConstants.C_USER_KEY_TRUENAME,
+                        MLSPUtil.get(mActivity, CustomerConstants.C_USER_KEY_TRUENAME, ""));
+                jsonVisitor.put(CustomerConstants.C_USER_KEY_COMPANYNAME,
+                        MLSPUtil.get(mActivity, CustomerConstants.C_USER_KEY_COMPANYNAME, ""));
+                jsonVisitor.put(CustomerConstants.C_USER_KEY_USERNICKNAME,
+                        MLSPUtil.get(mActivity, CustomerConstants.C_USER_KEY_USERNICKNAME, ""));
+                jsonVisitor.put(CustomerConstants.C_USER_KEY_DESCRIPTION,
+                        MLSPUtil.get(mActivity, CustomerConstants.C_USER_KEY_DESCRIPTION, ""));
+                jsonVisitor.put(CustomerConstants.C_USER_KEY_QQ,
+                        MLSPUtil.get(mActivity, CustomerConstants.C_USER_KEY_QQ, ""));
+                jsonVisitor.put(CustomerConstants.C_USER_KEY_EMAIL,
+                        MLSPUtil.get(mActivity, CustomerConstants.C_USER_KEY_EMAIL, ""));
+                jsonWeiChat.put("visitor", jsonVisitor);
+                message.setAttribute(CustomerConstants.C_ATTR_KEY_WEICHAT, jsonWeiChat);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            // 调用设置用户信息扩展
+            MLSPUtil.put(mActivity, CustomerConstants.C_IS_FIRST_CUSTOMER, false);
+        }
+    }
+
+    /**
+     * 设置技能组
+     *
+     * @param message
+     */
+    private void setSkillGroup(EMMessage message) {
+        try {
+            JSONObject jsonWebChat = getWeichatJSONObject(message);
+            // 这里是根据传进来的item是否为空确定是从首页点击连接客服，还是从商品详情页点击联系客服
+            if (mCurrentItem != null) {
+                jsonWebChat.put("queueName", "shouqian");
+            } else {
+                jsonWebChat.put("queueName", "shouhou");
+            }
+            message.setAttribute(CustomerConstants.C_ATTR_KEY_WEICHAT, jsonWebChat);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -238,7 +298,10 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
      * @param content
      */
     public void sendAnswer(String content) {
-        sendTextMessage(content);
+        EMMessage message = EMMessage.createTxtSendMessage(content, toChatUsername);
+        setUserAttibutes(message);
+        setSkillGroup(message);
+        sendMessage(message);
     }
 
     /**
@@ -263,6 +326,53 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
             e.printStackTrace();
         }
         message.setAttribute("msgtype", jsonMsgType);
+        setUserAttibutes(message);
+        setSkillGroup(message);
         sendMessage(message);
+    }
+
+    /**
+     * 获取消息中的扩展 weichat是否存在，并返回jsonObject
+     *
+     * @param message
+     * @return
+     */
+    private JSONObject getWeichatJSONObject(EMMessage message) {
+        JSONObject jsonWeiChat = null;
+        try {
+            jsonWeiChat = message.getJSONObjectAttribute(CustomerConstants.C_ATTR_KEY_WEICHAT);
+        } catch (EaseMobException e) {
+            e.printStackTrace();
+        }
+        if (jsonWeiChat == null) {
+            jsonWeiChat = new JSONObject();
+        }
+        return jsonWeiChat;
+    }
+
+    /**
+     * 满意度评价的回调接口，为了实现客户端在满意度ChatRow中发送满意度类型的消息
+     */
+    class MyChatRowListener implements CtrlTypeChatRow.CustomerChatRowListener {
+
+        @Override
+        public void onChatRowInteraction(EnquiryEntity enquiryEntity) {
+            EMMessage message = EMMessage.createTxtSendMessage("客服图文混排消息", toChatUsername);
+            JSONObject jsonWeiChat = new JSONObject();
+            JSONObject jsonCtrlArgs = new JSONObject();
+            try {
+                jsonCtrlArgs.put("inviteId", enquiryEntity.getInviteId());
+                jsonCtrlArgs.put("serviceSessionId", enquiryEntity.getServiceSessionId());
+                jsonCtrlArgs.put("detail", enquiryEntity.getDetail());
+                jsonCtrlArgs.put("summary", enquiryEntity.getSummary());
+
+                jsonWeiChat.put("ctrlType", "enquiry");
+                jsonWeiChat.put("ctrlArgs", jsonCtrlArgs);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            message.setAttribute(CustomerConstants.C_ATTR_KEY_WEICHAT, jsonWeiChat);
+            sendMessage(message);
+        }
     }
 }

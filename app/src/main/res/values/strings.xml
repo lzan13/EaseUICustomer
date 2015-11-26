@@ -1,30 +1,33 @@
 <resources>
     <string name="app_name">EaseUICustomer</string>
+
     <string name="title_activity_login">登录</string>
     <string name="title_activity_setting">设置</string>
     <string name="title_activity_detail">商品详情</string>
-    <string name="title_change_appkey">修改appkey</string>
-    <string name="title_change_im_customer">修改客服关联账户</string>
+
+    <string name="dialog_title_change_appkey">更改appkey</string>
+    <string name="dialog_title_change_im_customer">修改客服关联账户</string>
+    <string name="dialog_title_evaluate">对客服进行评价</string>
 
 
     <string name="prompt_username">账户</string>
     <string name="prompt_password">密码</string>
     <string name="prompt_sign_in_begin">开始登陆……</string>
 
+    <string name="btn_sign_in">登录</string>
+    <string name="btn_input_menu_photo">照片</string>
+    <string name="btn_input_menu_camera">相机</string>
+    <string name="btn_input_menu_answer">常用语</string>
+    <string name="btn_setting_appkey">appkey</string>
+    <string name="btn_setting_im_customer">客服关联账户</string>
+    <string name="btn_setting_user_info">账户信息</string>
 
-    <string name="action_sign_in">登录</string>
     <string name="action_message">消息</string>
     <string name="action_setting">设置</string>
-    <string name="action_setting_appkey">appkey</string>
-    <string name="action_setting_im_customer">客服关联账户</string>
-    <string name="action_setting_user_info">账户信息</string>
 
     <string name="error_field_required">此项必须输入</string>
 
-    <string name="input_menu_photo">照片</string>
-    <string name="input_menu_camera">相机</string>
-    <string name="input_menu_answer">常用语</string>
-
+    <string name="hint_enquiry">输入对客服的评价</string>
     <string name="input_limit">0123456789abcdefghigklmnopqrstuvwxyz</string>
 
     <!-- TODO: Remove or change this placeholder text -->
