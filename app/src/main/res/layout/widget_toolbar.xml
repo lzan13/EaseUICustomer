@@ -10,9 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        android:elevation="@dimen/dimen_4"
         android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/MLTheme.PupopMenu"
-        app:theme="@style/MLTheme.Toolbar">
-
-    </android.support.v7.widget.Toolbar>
+        app:theme="@style/MLTheme.Toolbar"></android.support.v7.widget.Toolbar>
 </LinearLayout>

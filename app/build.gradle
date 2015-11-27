@@ -5,8 +5,8 @@ android {
     buildToolsVersion '23.0.2'
     defaultConfig {
         applicationId "com.easemob.easeui.customer"
-        minSdkVersion 15
-        targetSdkVersion 19
+        minSdkVersion 21
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }

@@ -8,7 +8,9 @@
     <WebView
         android:id="@+id/webview_detail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></WebView>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dimen_48"
+        android:layout_marginTop="@dimen/dimen_48"></WebView>
     <!--包含Toolbar-->
     <include layout="@layout/widget_toolbar" />
 
@@ -29,12 +31,18 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <!--联系客服按钮-->
-                <ImageView
-                    android:id="@+id/action_chat"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/ml_primary"
-                    android:src="@mipmap/ic_message_white" />
+                <LinearLayout
+                    android:layout_width="@dimen/dimen_48"
+                    android:layout_height="@dimen/dimen_48"
+                    android:background="@color/ml_primary">
+
+                    <ImageView
+                        android:id="@+id/action_chat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_8"
+                        android:src="@mipmap/ic_message_white" />
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/action_join_in_shopping_cart"

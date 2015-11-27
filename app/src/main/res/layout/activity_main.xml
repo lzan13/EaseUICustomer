@@ -1,259 +1,283 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e8e8e8"
-    android:orientation="vertical"
+    android:background="@color/ml_bg_white"
     tools:context="com.easemob.easeui.customer.activity.MainActivity">
 
-    <!--包含Toolbar-->
-    <include layout="@layout/widget_toolbar" />
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--包含Toolbar-->
+        <include layout="@layout/widget_toolbar" />
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="8dp"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:id="@+id/item_01"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:visibility="visible">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="180dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/shop_01" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/ml_bg_text_black"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="XXX吸尘器"
-                        android:textColor="@color/ml_text_white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="698￥"
-                        android:textColor="@color/ml_text_red"
-                        android:textSize="18sp" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/item_02"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:visibility="visible">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/shop_02" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/ml_bg_text_black"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="笨精灵惠系列喜庆装无芯卷纸"
-                        android:textColor="@color/ml_text_white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="22.22￥"
-                        android:textColor="@color/ml_text_red"
-                        android:textSize="18sp" />
-                </LinearLayout>
-            </RelativeLayout>
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:visibility="visible">
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
 
                 <RelativeLayout
-                    android:id="@+id/item_03"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/item_01"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
 
                     <ImageView
                         android:layout_width="wrap_content"
-                        android:layout_height="210dp"
+                        android:layout_height="180dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/shop_03" />
+                        android:src="@mipmap/shop_01" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:background="@color/ml_bg_text_black"
-                        android:orientation="vertical"
+                        android:background="@color/ml_text_bg_black"
+                        android:orientation="horizontal"
                         android:padding="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="四川安岳柠檬"
+                            android:text="XXX吸尘器"
                             android:textColor="@color/ml_text_white"
-                            android:textSize="16sp" />
+                            android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="88.9￥"
+                            android:layout_marginLeft="8dp"
+                            android:text="698￥"
                             android:textColor="@color/ml_text_red"
-                            android:textSize="16sp" />
+                            android:textSize="18sp" />
                     </LinearLayout>
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/item_04"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/item_02"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_marginTop="8dp"
+                    android:visibility="visible">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="210dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/shop_04" />
+                        android:src="@mipmap/shop_02" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
-                        android:background="@color/ml_bg_text_black"
-                        android:orientation="vertical"
+                        android:background="@color/ml_text_bg_black"
+                        android:orientation="horizontal"
                         android:padding="8dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="精准版电子圆称"
+                            android:text="笨精灵惠系列喜庆装无芯卷纸"
                             android:textColor="@color/ml_text_white"
-                            android:textSize="16sp" />
+                            android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="24.9￥"
+                            android:layout_marginLeft="8dp"
+                            android:text="22.22￥"
                             android:textColor="@color/ml_text_red"
-                            android:textSize="16sp" />
+                            android:textSize="18sp" />
                     </LinearLayout>
                 </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
+
+                    <RelativeLayout
+                        android:id="@+id/item_03"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="210dp"
+                            android:scaleType="centerCrop"
+                            android:src="@mipmap/shop_03" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/ml_text_bg_black"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="四川安岳柠檬"
+                                android:textColor="@color/ml_text_white"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="88.9￥"
+                                android:textColor="@color/ml_text_red"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/item_04"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="210dp"
+                            android:scaleType="centerCrop"
+                            android:src="@mipmap/shop_04" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:background="@color/ml_text_bg_black"
+                            android:orientation="vertical"
+                            android:padding="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="精准版电子圆称"
+                                android:textColor="@color/ml_text_white"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="24.9￥"
+                                android:textColor="@color/ml_text_red"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/item_05"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/shop_05" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/ml_text_bg_black"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="璐迪尔温馨加长枕头"
+                            android:textColor="@color/ml_text_white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="19.9￥"
+                            android:textColor="@color/ml_text_red"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/item_06"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="160dp"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/shop_06" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/ml_text_bg_black"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="正宗阳澄湖大闸蟹"
+                            android:textColor="@color/ml_text_white"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:text="188.9￥"
+                            android:textColor="@color/ml_text_red"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+
+                </RelativeLayout>
+
             </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
-            <RelativeLayout
-                android:id="@+id/item_05"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/dimen_16">
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/shop_05" />
+        <LinearLayout
+            android:id="@+id/layout_fab"
+            android:layout_width="@dimen/dimen_56"
+            android:layout_height="@dimen/dimen_56"
+            android:background="@drawable/btn_fab_red"
+            android:gravity="center">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/ml_bg_text_black"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="璐迪尔温馨加长枕头"
-                        android:textColor="@color/ml_text_white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="19.9￥"
-                        android:textColor="@color/ml_text_red"
-                        android:textSize="18sp" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/item_06"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="160dp"
-                    android:scaleType="centerCrop"
-                    android:src="@mipmap/shop_06" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/ml_bg_text_black"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="正宗阳澄湖大闸蟹"
-                        android:textColor="@color/ml_text_white"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="188.9￥"
-                        android:textColor="@color/ml_text_red"
-                        android:textSize="18sp" />
-                </LinearLayout>
-
-
-            </RelativeLayout>
-
+            <ImageView
+                android:layout_width="@dimen/dimen_36"
+                android:layout_height="@dimen/dimen_36"
+                android:src="@mipmap/ic_message_white" />
         </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -74,6 +74,9 @@ public class CtrlTypeChatRow extends EaseChatRow {
 
     }
 
+    /**
+     * 重写方法，实现了CtrlTypeChatRow内容的显示
+     */
     @Override
     protected void onSetUpView() {
         try {
@@ -116,7 +119,6 @@ public class CtrlTypeChatRow extends EaseChatRow {
                     mEnquirySummaryView.setText(mEnquiryEntity.getSummary());
                     mEnquiryDetailView.setText(mEnquiryEntity.getDetail());
                 }
-
             }
         } catch (EaseMobException e) {
             e.printStackTrace();

@@ -8,6 +8,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.easemob.EMEventListener;
+import com.easemob.EMNotifierEvent;
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMMessage;
 import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.application.CustomerConstants;
@@ -17,7 +21,9 @@ import com.easemob.easeui.customer.util.MLSPUtil;
  * 程序主界面，主要模拟实现商品的列表展示，以及设置界面的跳转等功能
  * TODO (lzan13) 聊天信息的监听，
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements EMEventListener {
+
+    private View mLayoutFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +62,36 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.item_04).setOnClickListener(viewListener);
         findViewById(R.id.item_05).setOnClickListener(viewListener);
         findViewById(R.id.item_06).setOnClickListener(viewListener);
+        mLayoutFab = findViewById(R.id.layout_fab);
+        mLayoutFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jumpCustomer();
+            }
+        });
     }
 
+    /**
+     * 获取未读消息数
+     *
+     * @return
+     */
+    private void updateUnreadmessageAlert() {
+        int count = EMChatManager.getInstance().getUnreadMsgsCount();
+        if (count > 0) {
+            mLayoutFab.setBackgroundResource(R.drawable.btn_fab_red);
+        } else {
+            mLayoutFab.setBackgroundResource(R.drawable.btn_fab_green);
+        }
+    }
+
+
+    /**
+     * 初始化菜单方法
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -65,7 +99,7 @@ public class MainActivity extends BaseActivity {
     }
 
     /**
-     * Menu项点击方法
+     * Menu菜单项点击方法
      *
      * @param item
      * @return
@@ -74,14 +108,14 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent();
         switch (item.getItemId()) {
-            case R.id.action_message:
-                // 点击直接和客服联系
-                intent.setClass(mActivity, ChatActivity.class);
-                // 这个在使用EaseChatFragment时，传入的username参数key必须用EaseUI定义的，否则会报错
-                String username = (String) MLSPUtil.get(mActivity, CustomerConstants.C_IM, "");
-                intent.putExtra(EaseConstant.EXTRA_USER_ID, username);
-                mActivity.startActivity(intent);
-                break;
+//            case R.id.action_message:
+//                // 点击直接和客服联系
+//                intent.setClass(mActivity, ChatActivity.class);
+//                // 这个在使用EaseChatFragment时，传入的username参数key必须用EaseUI定义的，否则会报错
+//                String username = (String) MLSPUtil.get(mActivity, CustomerConstants.C_IM, "");
+//                intent.putExtra(EaseConstant.EXTRA_USER_ID, username);
+//                mActivity.startActivity(intent);
+//                break;
             case R.id.action_setting:
                 // 进入设置界面
                 intent.setClass(mActivity, SettingActivity.class);
@@ -89,6 +123,20 @@ public class MainActivity extends BaseActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+     * 跳转到客服界面
+     */
+    private void jumpCustomer() {
+        Intent intent = new Intent();
+        // 点击直接和客服联系
+        intent.setClass(mActivity, ChatActivity.class);
+        // 这个在使用EaseChatFragment时，传入的username参数key必须用EaseUI定义的，否则会报错
+        String username = (String) MLSPUtil.get(mActivity, CustomerConstants.C_IM, "");
+        intent.putExtra(EaseConstant.EXTRA_USER_ID, username);
+        mActivity.startActivity(intent);
     }
 
     /**
@@ -127,4 +175,46 @@ public class MainActivity extends BaseActivity {
             mActivity.startActivity(intent);
         }
     };
+
+    /**
+     * 实现消息监听
+     *
+     * @param emNotifierEvent
+     */
+    @Override
+    public void onEvent(EMNotifierEvent emNotifierEvent) {
+        switch (emNotifierEvent.getEvent()) {
+            case EventNewMessage:
+            case EventOfflineMessage:
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateUnreadmessageAlert();
+                    }
+                });
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 更新未读消息数
+        updateUnreadmessageAlert();
+        // 注册消息监听，主要监听客服发来的正常消息和离线消息
+        EMNotifierEvent.Event[] events = {
+                EMNotifierEvent.Event.EventNewMessage,
+                EMNotifierEvent.Event.EventOfflineMessage
+        };
+        EMChatManager.getInstance().registerEventListener(this, events);
+    }
+
+    @Override
+    protected void onStop() {
+        // 注销消息监听
+        EMChatManager.getInstance().unregisterEventListener(this);
+        super.onStop();
+    }
 }

@@ -33,6 +33,7 @@
                 android:id="@+id/btn_answer_close"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/btn_setting_item"
                 android:text="close" />
 
             <ListView
