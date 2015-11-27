@@ -23,7 +23,7 @@ the .jar file in your project was of an older version than the
 dependency we picked, which could render the project not compileable.
 You can disable the jar replacement in the import wizard and try again:
 
-android-support-v4.jar => com.android.support:support-v4:20.+
+android-support-v4.jar => com.android.support:support-v4:19.+
 
 Moved Files:
 ------------
@@ -31,17 +31,16 @@ Android Gradle projects use a different directory structure than ADT
 Eclipse projects. Here's how the projects were restructured:
 
 * AndroidManifest.xml => easeui\src\main\AndroidManifest.xml
-* assets\ => easeui\src\main\assets
 * libs\armeabi\libBaiduMapSDK_v3_2_0_15.so => easeui\src\main\jniLibs\armeabi\libBaiduMapSDK_v3_2_0_15.so
 * libs\armeabi\libbspatch.so => easeui\src\main\jniLibs\armeabi\libbspatch.so
 * libs\armeabi\liblocSDK3.so => easeui\src\main\jniLibs\armeabi\liblocSDK3.so
 * libs\armeabi\libvi_voslib.so => easeui\src\main\jniLibs\armeabi\libvi_voslib.so
 * libs\baidumapapi_v3_2_0.jar => easeui\libs\baidumapapi_v3_2_0.jar
-* libs\easemobchat_2.2.3.jar => easeui\libs\easemobchat_2.2.3.jar
+* libs\easemobchat_2.2.4.jar => easeui\libs\easemobchat_2.2.4.jar
+* libs\glide-3.6.1.jar => easeui\libs\glide-3.6.1.jar
 * libs\google-play-services.jar => easeui\libs\google-play-services.jar
 * libs\locSDK_3.3.jar => easeui\libs\locSDK_3.3.jar
 * libs\org.apache.http.legacy.jar => easeui\libs\org.apache.http.legacy.jar
-* libs\picasso-2.4.0.jar => easeui\libs\picasso-2.4.0.jar
 * res\ => easeui\src\main\res\
 * src\ => easeui\src\main\java\
 

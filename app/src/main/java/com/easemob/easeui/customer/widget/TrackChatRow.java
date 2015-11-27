@@ -1,12 +1,12 @@
 package com.easemob.easeui.customer.widget;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.easemob.chat.EMMessage;
 import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.activity.DetailActivity;
@@ -14,8 +14,6 @@ import com.easemob.easeui.customer.application.CustomerConstants;
 import com.easemob.easeui.customer.util.MLSPUtil;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.exceptions.EaseMobException;
-import com.easemob.util.DensityUtil;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -78,14 +76,13 @@ public class TrackChatRow extends EaseChatRow {
                 String imgUrl = track.getString("img_url");
                 String itemUrl = track.getString("item_url");
                 // 设置聊天气泡用户头像
-                Picasso.with(context)
+                Glide.with(context)
                         .load((String) MLSPUtil.get(context, CustomerConstants.C_USER_KEY_AVATAR, ""))
                         .placeholder(R.mipmap.ic_avatar_02)
                         .into(mAvatarView);
                 // 设置商品图片显示
-                Picasso.with(context)
+                Glide.with(context)
                         .load(imgUrl)
-                        .resize(DensityUtil.dip2px(context, 90), DensityUtil.dip2px(context, 90))
                         .placeholder(R.mipmap.ic_avatar_01)
                         .into(mTrackImageView);
 

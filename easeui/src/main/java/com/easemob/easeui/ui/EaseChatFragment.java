@@ -44,6 +44,7 @@ import com.easemob.chat.TextMessageBody;
 import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.R;
 import com.easemob.easeui.controller.EaseUI;
+import com.easemob.easeui.domain.EaseEmojicon;
 import com.easemob.easeui.utils.EaseCommonUtils;
 import com.easemob.easeui.utils.EaseImageUtils;
 import com.easemob.easeui.utils.EaseUserUtils;
@@ -146,7 +147,7 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         inputMenu = (EaseChatInputMenu) getView().findViewById(R.id.input_menu);
         registerExtendMenuItem();
         // init input menu
-        inputMenu.init();
+        inputMenu.init(null);
         inputMenu.setChatInputMenuListener(new ChatInputMenuListener() {
 
             @Override
@@ -165,6 +166,12 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
                         sendVoiceMessage(voiceFilePath, voiceTimeLength);
                     }
                 });
+            }
+
+            @Override
+            public void onBigExpressionClicked(EaseEmojicon emojicon) {
+                //发送大表情(动态表情)
+                sendBigExpressionMessage(emojicon.getName(), emojicon.getIdentityCode());
             }
         });
 
@@ -189,12 +196,12 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
             }
             titleBar.setRightImageResource(R.drawable.ease_mm_title_remove);
         } else {
+        	titleBar.setRightImageResource(R.drawable.ease_to_group_details_normal);
             if (chatType == EaseConstant.CHATTYPE_GROUP) {
                 // 群聊
                 EMGroup group = EMGroupManager.getInstance().getGroup(toChatUsername);
                 if (group != null)
                     titleBar.setTitle(group.getGroupName());
-                titleBar.setRightImageResource(R.drawable.ease_to_group_details_normal);
                 // 监听当前会话的群聊解散被T事件
                 groupListener = new GroupListener();
                 EMGroupManager.getInstance().addGroupChangeListener(groupListener);
@@ -424,8 +431,6 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         // unregister this event listener when this activity enters the
         // background
         EMChatManager.getInstance().unregisterEventListener(this);
-        if(chatRoomChangeListener != null)
-            EMChatManager.getInstance().removeChatRoomChangeListener(chatRoomChangeListener);
 
         // 把此activity 从foreground activity 列表里移除
         EaseUI.getInstance().popActivity(getActivity());
@@ -439,6 +444,10 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         }
         if(chatType == EaseConstant.CHATTYPE_CHATROOM){
             EMChatManager.getInstance().leaveChatRoom(toChatUsername);
+        }
+        
+        if(chatRoomChangeListener != null){
+            EMChatManager.getInstance().removeChatRoomChangeListener(chatRoomChangeListener);
         }
     }
 
@@ -625,6 +634,11 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
     //==========================================================================
     protected void sendTextMessage(String content) {
         EMMessage message = EMMessage.createTxtSendMessage(content, toChatUsername);
+        sendMessage(message);
+    }
+    
+    protected void sendBigExpressionMessage(String name, String identityCode){
+        EMMessage message = EaseCommonUtils.createExpressionMessage(toChatUsername, name, identityCode);
         sendMessage(message);
     }
 
@@ -818,6 +832,10 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
             if(chatFragmentListener != null){
                 chatFragmentListener.onEnterToChatDetails();
             }
+        }else if(chatType == EaseConstant.CHATTYPE_CHATROOM){
+        	if(chatFragmentListener != null){
+        		chatFragmentListener.onEnterToChatDetails();
+        	}
         }
     }
 
@@ -842,9 +860,14 @@ public class EaseChatFragment extends EaseBaseFragment implements EMEventListene
         EMMessage.Type type = forward_msg.getType();
         switch (type) {
         case TXT:
-            // 获取消息内容，发送消息
-            String content = ((TextMessageBody) forward_msg.getBody()).getMessage();
-            sendTextMessage(content);
+            if(forward_msg.getBooleanAttribute(EaseConstant.MESSAGE_ATTR_IS_BIG_EXPRESSION, false)){
+                sendBigExpressionMessage(((TextMessageBody) forward_msg.getBody()).getMessage(),
+                        forward_msg.getStringAttribute(EaseConstant.MESSAGE_ATTR_EXPRESSION_ID, null));
+            }else{
+                // 获取消息内容，发送消息
+                String content = ((TextMessageBody) forward_msg.getBody()).getMessage();
+                sendTextMessage(content);
+            }
             break;
         case IMAGE:
             // 发送图片

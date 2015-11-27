@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.easemob.chat.EMMessage;
 import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.application.CustomerConstants;
@@ -18,7 +19,6 @@ import com.easemob.easeui.customer.util.MLLog;
 import com.easemob.easeui.customer.util.MLSPUtil;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.exceptions.EaseMobException;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +36,8 @@ public class CtrlTypeChatRow extends EaseChatRow {
     private View mChatRowView;
     private ImageView mAvatarView;
     private TextView mEnquiryTitleView;
-    private TextView mEnquiryContentView;
+    private TextView mEnquiryDetailView;
+    private TextView mEnquirySummaryView;
 
     public CtrlTypeChatRow(Context context, EMMessage message, int position, BaseAdapter adapter) {
         super(context, message, position, adapter);
@@ -55,7 +56,8 @@ public class CtrlTypeChatRow extends EaseChatRow {
         mChatRowView = findViewById(R.id.layout_chat_row);
         mAvatarView = (ImageView) findViewById(R.id.iv_userhead);
         mEnquiryTitleView = (TextView) findViewById(R.id.text_enquiry_title);
-        mEnquiryContentView = (TextView) findViewById(R.id.text_enquiry_content);
+        mEnquiryDetailView = (TextView) findViewById(R.id.text_enquiry_detail);
+        mEnquirySummaryView = (TextView) findViewById(R.id.text_enquiry_summary);
 
         mChatRowView.setOnClickListener(new OnClickListener() {
             @Override
@@ -93,14 +95,28 @@ public class CtrlTypeChatRow extends EaseChatRow {
                 MLLog.i(summary);
 
                 // 设置聊天气泡用户头像
-                Picasso.with(context)
+                Glide.with(context)
                         .load((String) MLSPUtil.get(context, CustomerConstants.C_USER_KEY_AVATAR, ""))
                         .placeholder(R.mipmap.ic_avatar_02)
                         .into(mAvatarView);
                 mAvatarView.setVisibility(View.GONE);
 
-                mEnquiryTitleView.setText("请对我的服务做出评价");
-                mEnquiryContentView.setText("希望我的服务能让你满意，请对我的服务做出评价，谢谢！");
+                mEnquiryTitleView.setText("客服满意度");
+                if (mEnquiryEntity.getDetail().equals("null")
+                        || mEnquiryEntity.getDetail().equals("")
+                        || mEnquiryEntity.getDetail() == null) {
+                    if (message.direct == EMMessage.Direct.RECEIVE) {
+                        mEnquirySummaryView.setVisibility(View.GONE);
+                        mEnquiryDetailView.setText("请对我的服务做出评价，谢谢");
+                    } else {
+                        mEnquirySummaryView.setText("星级：" + mEnquiryEntity.getSummary());
+                        mEnquiryDetailView.setVisibility(View.GONE);
+                    }
+                } else {
+                    mEnquirySummaryView.setText(mEnquiryEntity.getSummary());
+                    mEnquiryDetailView.setText(mEnquiryEntity.getDetail());
+                }
+
             }
         } catch (EaseMobException e) {
             e.printStackTrace();
@@ -129,8 +145,8 @@ public class CtrlTypeChatRow extends EaseChatRow {
         dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String detail = String.valueOf(ratingBar.getNumStars());
-                String summary = editText.getText().toString();
+                String detail = editText.getText().toString();
+                String summary = String.valueOf(ratingBar.getRating());
                 mEnquiryEntity.setDetail(detail);
                 mEnquiryEntity.setSummary(summary);
                 mChatRowListener.onChatRowInteraction(mEnquiryEntity);

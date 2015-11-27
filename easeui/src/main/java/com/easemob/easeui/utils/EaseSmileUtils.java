@@ -13,6 +13,7 @@
  */
 package com.easemob.easeui.utils;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -20,13 +21,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.content.Context;
+import android.net.Uri;
 import android.text.Spannable;
 import android.text.Spannable.Factory;
 import android.text.style.ImageSpan;
 
-import com.easemob.easeui.R;
+import com.easemob.easeui.controller.EaseUI;
+import com.easemob.easeui.controller.EaseUI.EaseEmojiconInfoProvider;
+import com.easemob.easeui.domain.EaseEmojicon;
+import com.easemob.easeui.model.EaseDefaultEmojiconDatas;
 
 public class EaseSmileUtils {
+    public static final String DELETE_KEY = "em_delete_delete_expression";
+    
 	public static final String ee_1 = "[):]";
 	public static final String ee_2 = "[:D]";
 	public static final String ee_3 = "[;)]";
@@ -66,55 +73,32 @@ public class EaseSmileUtils {
 	private static final Factory spannableFactory = Spannable.Factory
 	        .getInstance();
 	
-	private static final Map<Pattern, Integer> emoticons = new HashMap<Pattern, Integer>();
+	private static final Map<Pattern, Object> emoticons = new HashMap<Pattern, Object>();
 	
-	private static int simlesSize = 0;
 
 	static {
-		
-	    addPattern(emoticons, ee_1, R.drawable.ee_1);
-	    addPattern(emoticons, ee_2, R.drawable.ee_2);
-	    addPattern(emoticons, ee_3, R.drawable.ee_3);
-	    addPattern(emoticons, ee_4, R.drawable.ee_4);
-	    addPattern(emoticons, ee_5, R.drawable.ee_5);
-	    addPattern(emoticons, ee_6, R.drawable.ee_6);
-	    addPattern(emoticons, ee_7, R.drawable.ee_7);
-	    addPattern(emoticons, ee_8, R.drawable.ee_8);
-	    addPattern(emoticons, ee_9, R.drawable.ee_9);
-	    addPattern(emoticons, ee_10, R.drawable.ee_10);
-	    addPattern(emoticons, ee_11, R.drawable.ee_11);
-	    addPattern(emoticons, ee_12, R.drawable.ee_12);
-	    addPattern(emoticons, ee_13, R.drawable.ee_13);
-	    addPattern(emoticons, ee_14, R.drawable.ee_14);
-	    addPattern(emoticons, ee_15, R.drawable.ee_15);
-	    addPattern(emoticons, ee_16, R.drawable.ee_16);
-	    addPattern(emoticons, ee_17, R.drawable.ee_17);
-	    addPattern(emoticons, ee_18, R.drawable.ee_18);
-	    addPattern(emoticons, ee_19, R.drawable.ee_19);
-	    addPattern(emoticons, ee_20, R.drawable.ee_20);
-	    addPattern(emoticons, ee_21, R.drawable.ee_21);
-	    addPattern(emoticons, ee_22, R.drawable.ee_22);
-	    addPattern(emoticons, ee_23, R.drawable.ee_23);
-	    addPattern(emoticons, ee_24, R.drawable.ee_24);
-	    addPattern(emoticons, ee_25, R.drawable.ee_25);
-	    addPattern(emoticons, ee_26, R.drawable.ee_26);
-	    addPattern(emoticons, ee_27, R.drawable.ee_27);
-	    addPattern(emoticons, ee_28, R.drawable.ee_28);
-	    addPattern(emoticons, ee_29, R.drawable.ee_29);
-	    addPattern(emoticons, ee_30, R.drawable.ee_30);
-	    addPattern(emoticons, ee_31, R.drawable.ee_31);
-	    addPattern(emoticons, ee_32, R.drawable.ee_32);
-	    addPattern(emoticons, ee_33, R.drawable.ee_33);
-	    addPattern(emoticons, ee_34, R.drawable.ee_34);
-	    addPattern(emoticons, ee_35, R.drawable.ee_35);
+	    EaseEmojicon[] emojicons = EaseDefaultEmojiconDatas.getData();
+	    for(int i = 0; i < emojicons.length; i++){
+	        addPattern(emojicons[i].getEmojiText(), emojicons[i].getIcon());
+	    }
+	    EaseEmojiconInfoProvider emojiconInfoProvider = EaseUI.getInstance().getEmojiconInfoProvider();
+	    if(emojiconInfoProvider != null && emojiconInfoProvider.getTextEmojiconMapping() != null){
+	        for(Entry<String, Object> entry : emojiconInfoProvider.getTextEmojiconMapping().entrySet()){
+	            addPattern(entry.getKey(), entry.getValue());
+	        }
+	    }
 	    
-	    simlesSize = emoticons.size();
 	}
 
-	private static void addPattern(Map<Pattern, Integer> map, String smile,
-	        int resource) {
-	    map.put(Pattern.compile(Pattern.quote(smile)), resource);
+	/**
+	 * 添加文字表情mapping
+	 * @param emojiText emoji文本内容
+	 * @param icon 图片资源id或者本地路径
+	 */
+	public static void addPattern(String emojiText, Object icon){
+	    emoticons.put(Pattern.compile(Pattern.quote(emojiText)), icon);
 	}
+	
 
 	/**
 	 * replace existing spannable with smiles
@@ -124,7 +108,7 @@ public class EaseSmileUtils {
 	 */
 	public static boolean addSmiles(Context context, Spannable spannable) {
 	    boolean hasChanges = false;
-	    for (Entry<Pattern, Integer> entry : emoticons.entrySet()) {
+	    for (Entry<Pattern, Object> entry : emoticons.entrySet()) {
 	        Matcher matcher = entry.getKey().matcher(spannable);
 	        while (matcher.find()) {
 	            boolean set = true;
@@ -139,12 +123,24 @@ public class EaseSmileUtils {
 	                }
 	            if (set) {
 	                hasChanges = true;
-	                spannable.setSpan(new ImageSpan(context, entry.getValue()),
-	                        matcher.start(), matcher.end(),
-	                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	                Object value = entry.getValue();
+	                if(value instanceof String && !((String) value).startsWith("http")){
+	                    File file = new File((String) value);
+	                    if(!file.exists() || file.isDirectory()){
+	                        return false;
+	                    }
+	                    spannable.setSpan(new ImageSpan(context, Uri.fromFile(file)),
+	                            matcher.start(), matcher.end(),
+	                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	                }else{
+	                    spannable.setSpan(new ImageSpan(context, (Integer)value),
+	                            matcher.start(), matcher.end(),
+	                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+	                }
 	            }
 	        }
 	    }
+	    
 	    return hasChanges;
 	}
 
@@ -156,7 +152,7 @@ public class EaseSmileUtils {
 	
 	public static boolean containsKey(String key){
 		boolean b = false;
-		for (Entry<Pattern, Integer> entry : emoticons.entrySet()) {
+		for (Entry<Pattern, Object> entry : emoticons.entrySet()) {
 	        Matcher matcher = entry.getKey().matcher(key);
 	        if (matcher.find()) {
 	        	b = true;
@@ -168,7 +164,7 @@ public class EaseSmileUtils {
 	}
 	
 	public static int getSmilesSize(){
-        return simlesSize;
+        return emoticons.size();
     }
     
 	

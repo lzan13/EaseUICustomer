@@ -42,26 +42,28 @@
                 android:id="@+id/text_enquiry_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_4"
                 android:text="@string/app_name"
                 android:textColor="@color/ml_text_white"
-                android:textSize="@dimen/size_18" />
+                android:textSize="@dimen/size_14" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/text_enquiry_summary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dimen_4"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/dimen_4"
+                android:text="@string/app_name"
+                android:textColor="@color/ml_text_white"
+                android:textSize="@dimen/size_12" />
 
-                <TextView
-                    android:id="@+id/text_enquiry_content"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:textColor="@color/ml_text_white"
-                    android:textSize="@dimen/size_16" />
+            <TextView
+                android:id="@+id/text_enquiry_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_4"
+                android:text="@string/app_name"
+                android:textColor="@color/ml_text_white"
+                android:textSize="@dimen/size_12" />
 
-            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
