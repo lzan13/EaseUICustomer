@@ -1,7 +1,7 @@
 # EaseUICustomer
-# 使用环信提供的EaseUI库集成客服demo
+### 使用环信提供的EaseUI库集成客服demo
 
-#首先说下EaseUI重构客服demo的环境：
+###首先说下EaseUI重构客服demo的环境：
 AndroidStudio version：1.4.1
 jdk version：1.7.0
 SDKTools version：24.0.x
