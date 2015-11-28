@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.easemob.chat.EMMessage;
 import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.application.CustomerConstants;
+import com.easemob.easeui.customer.fragment.ChatFragment;
 import com.easemob.easeui.customer.entity.EnquiryEntity;
 import com.easemob.easeui.customer.util.MLLog;
 import com.easemob.easeui.customer.util.MLSPUtil;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 /**
  * Created by lzan13 on 2015/11/25.
  * 自定义ChatRow类，这个是满意度评价的类，实现了点击弹出评价Dialog，并发送评价信息
+ * 在聊天界面 自定义ChatRow提供者中 {@link ChatFragment.CustomChatRowProvider}调用
  */
 public class CtrlTypeChatRow extends EaseChatRow {
 

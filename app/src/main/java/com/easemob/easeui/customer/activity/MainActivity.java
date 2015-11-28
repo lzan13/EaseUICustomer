@@ -15,9 +15,11 @@ import com.easemob.chat.EMMessage;
 import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.application.CustomerConstants;
+import com.easemob.easeui.customer.application.CustomerHelper;
 import com.easemob.easeui.customer.util.MLSPUtil;
 
 /**
+ * Created by lzan13 on 2015/11/6 21:10.
  * 程序主界面，主要模拟实现商品的列表展示，以及设置界面的跳转等功能
  * TODO (lzan13) 聊天信息的监听，
  */
@@ -77,12 +79,17 @@ public class MainActivity extends BaseActivity implements EMEventListener {
      * @return
      */
     private void updateUnreadmessageAlert() {
-        int count = EMChatManager.getInstance().getUnreadMsgsCount();
-        if (count > 0) {
-            mLayoutFab.setBackgroundResource(R.drawable.btn_fab_red);
-        } else {
-            mLayoutFab.setBackgroundResource(R.drawable.btn_fab_green);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                int count = EMChatManager.getInstance().getUnreadMsgsCount();
+                if (count > 0) {
+                    mLayoutFab.setBackgroundResource(R.drawable.btn_fab_red);
+                } else {
+                    mLayoutFab.setBackgroundResource(R.drawable.btn_fab_green);
+                }
+            }
+        });
     }
 
 
@@ -185,13 +192,12 @@ public class MainActivity extends BaseActivity implements EMEventListener {
     public void onEvent(EMNotifierEvent emNotifierEvent) {
         switch (emNotifierEvent.getEvent()) {
             case EventNewMessage:
+                EMMessage message = (EMMessage) emNotifierEvent.getData();
+                CustomerHelper.getInstance().getNotifier().onNewMsg(message);
+                updateUnreadmessageAlert();
+                break;
             case EventOfflineMessage:
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateUnreadmessageAlert();
-                    }
-                });
+                updateUnreadmessageAlert();
                 break;
             default:
                 break;

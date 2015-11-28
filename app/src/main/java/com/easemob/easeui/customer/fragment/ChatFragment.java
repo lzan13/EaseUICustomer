@@ -26,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
+ * Created by lzan13 on 2015/11/8 21:30.
  * 自定义ChatFragment类
  */
 public class ChatFragment extends EaseChatFragment implements EaseChatFragment.EaseChatFragmentListener {

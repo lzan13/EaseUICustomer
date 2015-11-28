@@ -1,18 +1,17 @@
 package com.easemob.easeui.customer.util;
 
-/**
- * Created by Administrator on 2015/5/12.
- */
-
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 
 import java.util.Map;
 
+/**
+ * Created by lzan13 on 2015/5/12.
+ * SharePreferences 文件操作类，
+ */
 public class MLSPUtil {
     /**
-     * 保存在手机里面的文件名
+     * app保存 shared 的文件名
      */
     public static final String FILE_NAME = "app_shared";
 

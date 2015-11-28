@@ -15,6 +15,7 @@ import com.easemob.easeui.customer.entity.ShopEntity;
 import com.easemob.easeui.customer.util.MLSPUtil;
 
 /**
+ * Created by lzan13 on 2015/11/7 21:00.
  * 商品详情类
  */
 public class DetailActivity extends BaseActivity {

@@ -11,6 +11,13 @@ import com.easemob.easeui.customer.application.CustomerConstants;
 import com.easemob.easeui.customer.application.CustomerHelper;
 import com.easemob.easeui.customer.util.MLSPUtil;
 
+/**
+ * Created by lzan13 on 2015/11/6 20:56.
+ * 开屏类，启动app的界面，这里会进行一些数据的初始化操作，同时判断应该进入到app的哪个界面
+ * MainActivity {@link MainActivity}
+ * 还是
+ * LoginActivity {@link LoginActivity}
+ */
 public class SplashActivity extends BaseActivity {
 
     // 开屏页持续时间

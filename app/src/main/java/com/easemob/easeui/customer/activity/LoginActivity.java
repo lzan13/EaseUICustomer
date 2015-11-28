@@ -19,7 +19,8 @@ import com.easemob.easeui.customer.util.MLSPUtil;
 
 
 /**
- * 登陆界面
+ * Created by lzan13 on 2015/11/6 21:00.
+ * 登陆界面，实现了环信账户的登录
  */
 public class LoginActivity extends BaseActivity {
 

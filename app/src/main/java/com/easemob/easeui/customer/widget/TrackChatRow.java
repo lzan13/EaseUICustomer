@@ -11,6 +11,7 @@ import com.easemob.chat.EMMessage;
 import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.activity.DetailActivity;
 import com.easemob.easeui.customer.application.CustomerConstants;
+import com.easemob.easeui.customer.fragment.ChatFragment;
 import com.easemob.easeui.customer.util.MLSPUtil;
 import com.easemob.easeui.widget.chatrow.EaseChatRow;
 import com.easemob.exceptions.EaseMobException;
@@ -20,7 +21,8 @@ import org.json.JSONObject;
 
 /**
  * Created by lzan13 on 2015/11/25.
- * 用户浏览轨迹自定义消息类型
+ * 自定义 ChatRow，用户浏览轨迹自定义消息类型，实现了展示用户浏览商品轨迹，
+ * 由聊天界面自定义ChatRow提供者中 {@link ChatFragment.CustomChatRowProvider}调用
  */
 public class TrackChatRow extends EaseChatRow {
 

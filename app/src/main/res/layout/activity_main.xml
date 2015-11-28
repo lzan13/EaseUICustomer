@@ -277,7 +277,7 @@
             <ImageView
                 android:layout_width="@dimen/dimen_36"
                 android:layout_height="@dimen/dimen_36"
-                android:src="@mipmap/ic_message_white" />
+                android:src="@mipmap/icon" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

@@ -2,7 +2,6 @@ package com.easemob.easeui.customer.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,8 +11,13 @@ import android.widget.ListView;
 
 import com.easemob.easeui.EaseConstant;
 import com.easemob.easeui.customer.R;
+import com.easemob.easeui.customer.application.CustomerHelper;
 import com.easemob.easeui.customer.fragment.ChatFragment;
 
+/**
+ * Created by lzan13 on 2015/11/6 21:30.
+ * 聊天界面，这里只是个容器，真正实现聊天是在ChatFragment类里{@link ChatFragment}
+ */
 public class ChatActivity extends BaseActivity implements ChatFragment.CustomerFragmentListener {
 
     // 通过Fragment的方式加聊天界面
@@ -90,6 +94,13 @@ public class ChatActivity extends BaseActivity implements ChatFragment.CustomerF
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // 进入聊天界面重置通知栏消息数量
+        CustomerHelper.getInstance().getNotifier().reset();
     }
 
     @Override

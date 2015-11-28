@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EaseUICustomer</string>
+    <string name="app_name">EaseUI客服Demo</string>
 
     <string name="title_activity_login">登录</string>
     <string name="title_activity_setting">设置</string>

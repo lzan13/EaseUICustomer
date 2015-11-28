@@ -4,7 +4,7 @@ import android.util.Log;
 
 /**
  * Created by lzan13 on 2014/12/16.
- * Log 输出封装
+ * 自定义工具类 Log日志 输出简单封装
  */
 public class MLLog {
 
@@ -13,7 +13,7 @@ public class MLLog {
     private static String TAG_E = "melove_e";
     private static boolean isDebug = true;
 
-    public static void setShowDebug(boolean b) {
+    public static void setDebugMode(boolean b) {
         isDebug = b;
     }
 
@@ -32,6 +32,24 @@ public class MLLog {
     public static void e(String msg) {
         if (isDebug) {
             Log.e(TAG_E, msg);
+        }
+    }
+
+    public static void i(int msg) {
+        if (isDebug) {
+            Log.i(TAG_I, String.valueOf(msg));
+        }
+    }
+
+    public static void d(int msg) {
+        if (isDebug) {
+            Log.d(TAG_D, String.valueOf(msg));
+        }
+    }
+
+    public static void e(int msg) {
+        if (isDebug) {
+            Log.e(TAG_E, String.valueOf(msg));
         }
     }
 

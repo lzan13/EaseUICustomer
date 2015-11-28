@@ -13,6 +13,9 @@ import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.application.CustomerConstants;
 import com.easemob.easeui.customer.util.MLSPUtil;
 
+/**
+ * Created by lzan13 on 2015/11/6 20:50.
+ */
 public class SettingActivity extends BaseActivity {
 
     private View mRootView;

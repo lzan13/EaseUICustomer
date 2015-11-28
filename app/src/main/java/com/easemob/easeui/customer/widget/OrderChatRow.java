@@ -9,6 +9,7 @@ import com.easemob.easeui.widget.chatrow.EaseChatRow;
 
 /**
  * Created by lzan13 on 2015/11/25.
+ * 订单类消息实现，暂未调用
  */
 public class OrderChatRow extends EaseChatRow {
     public OrderChatRow(Context context, EMMessage message, int position, BaseAdapter adapter) {

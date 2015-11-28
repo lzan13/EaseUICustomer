@@ -1,8 +1,8 @@
 package com.easemob.easeui.customer.application;
 
 /**
- * 常量类
  * Created by lzan13 on 2015/11/9 22:45.
+ * 常量类 保存一些常量值
  */
 public class CustomerConstants {
 

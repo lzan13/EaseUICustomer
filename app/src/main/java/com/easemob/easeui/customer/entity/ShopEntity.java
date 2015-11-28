@@ -2,7 +2,10 @@ package com.easemob.easeui.customer.entity;
 
 /**
  * Created by lzan13 on 2015/11/25.
- * 商品实体类，模拟商城软件的一些数据
+ * 商品实体类，模拟商城软件的一些数据，根据传入的参数，获取模拟的某一个商品信息
+ * 在多处有调用
+ * {@link com.easemob.easeui.customer.activity.DetailActivity}
+ * {@link com.easemob.easeui.customer.fragment.ChatFragment} sendTrackMessage中
  */
 public class ShopEntity {
     private int item;
