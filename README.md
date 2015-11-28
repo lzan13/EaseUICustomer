@@ -1,12 +1,12 @@
 EaseUICustomer
 ============================
 
-使用环信提供的`EaseUI`库集成`客服demo`，方便开发者参考集成环信的客服功能；项目有详细的注释，适合新手以及老鸟参考研究，
-此demo使用最新的环信提供的`EaseUI`库集成环信的客服聊天
+使用环信提供的 `EaseUI` 库集成客服demo，方便开发者参考集成环信的客服功能；项目有详细的注释，适合新手以及老鸟参考研究，
+此demo使用最新的环信提供的 `EaseUI` 库集成环信的客服聊天
 
 关于EaseUI库
 ----------------------
-`EaseUI`库可以去环信官网下载界面下载sdk，里边包含有EaseUI库 [官网下载sdk][1]
+`EaseUI` 库可以去环信官网下载界面下载sdk，里边包含有EaseUI库 [官网下载sdk][1]  
 或者去环信的github上去下载：[下载EaseUI][2]
 
 ###首先说下EaseUI重构客服demo的环境以及工具版本：
@@ -20,12 +20,12 @@ EaseUICustomer
 
 ####AndroidStudio等工具地址：
 Android 官方下载 [Android官网][3]  
-国内网友收集 [AndroidDevTools][4]
-[gradle v2.4下载][gradle]（AndroidStudio有时自动下载不成功，所以要自己下载）
+国内网友收集 [AndroidDevTools][4]  
+Gradle（AndroidStudio有时自动下载不成功，所以要自己下载） [gradle v2.4下载][gradle]
 
 需要注意的地方
 ----------------
-在使用过程中有什么疑问可以去环信官方社区`imgeek.org`去发帖[imgeek 社区][imgeek]
+在使用过程中有什么疑问可以去环信官方社区 `imgeek.org` 去发帖[imgeek 社区][imgeek]
 
 
 
