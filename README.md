@@ -3,6 +3,7 @@ EaseUICustomer
 
 使用环信提供的EaseUI库集成客服demo，方便开发者参考集成环信的客服功能；项目有详细的注释，适合新手以及老鸟参考研究；
 此demo使用最新的环信提供的EaseUI库集成环信的客服聊天
+
     EaseUI库可以去环信官网下载界面下载sdk，里边包含有EaseUI库 [官网下载sdk](http://www.easemob.com/downloads)
     或者去环信的github上去下载：[下载EaseUI](https://github.com/easemob/easeui)
 
