@@ -9,6 +9,23 @@ EaseUICustomer
 `EaseUI` 库可以去环信官网下载界面下载sdk，里边包含有EaseUI库 [官网下载sdk][1]  
 或者去环信的github上去下载：[下载EaseUI][2]
 
+特点
+----------
+使用了Android Material Design 样式开发，将Android新设计与环信的EaseUI结合，
+
+实现的功能
+----------
+全局消息的监听，在DemoHelper类实现，搜索 `onEvent` 方法  
+
+通知栏消息提醒，这里使用 `EaseUI` 定义封装好的通知，这里只是稍微设置了下，单条消息会显示消息内容，多条消息会显示消息条数，以及小图标的设置
+
+用户轨迹图文消息混排
+
+满意度消息的收发
+
+
+通知栏提醒
+
 ###首先说下EaseUI重构客服demo的环境以及工具版本：
     AndroidStudio version：1.5.0
     SDKTools version：24.4.x

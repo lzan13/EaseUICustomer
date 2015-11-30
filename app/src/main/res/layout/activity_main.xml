@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,7 +12,38 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <!--包含Toolbar-->
-        <include layout="@layout/widget_toolbar" />
+        <!--<include layout="@layout/widget_toolbar" />-->
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/widget_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:elevation="@dimen/dimen_4"
+            android:minHeight="?attr/actionBarSize"
+            app:popupTheme="@style/MLTheme.PupopMenu"
+            app:theme="@style/MLTheme.Toolbar">
+
+            <RelativeLayout
+                android:id="@+id/layout_message_alert"
+                android:layout_width="@dimen/dimen_36"
+                android:layout_height="@dimen/dimen_36"
+                android:layout_gravity="end">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_24"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_customer_answer_white_24dp"
+                    android:layout_centerInParent="true"/>
+
+                <View
+                    android:id="@+id/view_unread_dot"
+                    android:layout_width="@dimen/dimen_8"
+                    android:layout_height="@dimen/dimen_8"
+                    android:layout_alignParentRight="true"
+                    android:background="@mipmap/ic_unread_dot" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -259,25 +291,4 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/dimen_16">
-
-        <LinearLayout
-            android:id="@+id/layout_fab"
-            android:layout_width="@dimen/dimen_56"
-            android:layout_height="@dimen/dimen_56"
-            android:background="@drawable/btn_fab_red"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="@dimen/dimen_36"
-                android:layout_height="@dimen/dimen_36"
-                android:src="@mipmap/icon" />
-        </LinearLayout>
-    </RelativeLayout>
 </RelativeLayout>

@@ -12,8 +12,8 @@
 
     <item
         android:id="@+id/action_setting"
-        android:icon="@drawable/abc_ic_menu_moreoverflow_mtrl_alpha"
+        android:icon="@mipmap/ic_settings_white_24dp"
         android:orderInCategory="200"
         android:title="@string/action_setting"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 </menu>

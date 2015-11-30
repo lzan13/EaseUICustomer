@@ -25,7 +25,8 @@ import com.easemob.easeui.customer.util.MLSPUtil;
  */
 public class MainActivity extends BaseActivity implements EMEventListener {
 
-    private View mLayoutFab;
+    private View mMessageAlertView;
+    private View mUnreadDotView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +65,10 @@ public class MainActivity extends BaseActivity implements EMEventListener {
         findViewById(R.id.item_04).setOnClickListener(viewListener);
         findViewById(R.id.item_05).setOnClickListener(viewListener);
         findViewById(R.id.item_06).setOnClickListener(viewListener);
-        mLayoutFab = findViewById(R.id.layout_fab);
-        mLayoutFab.setOnClickListener(new View.OnClickListener() {
+
+        mUnreadDotView = findViewById(R.id.view_unread_dot);
+        mMessageAlertView = findViewById(R.id.layout_message_alert);
+        mMessageAlertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 jumpCustomer();
@@ -84,9 +87,9 @@ public class MainActivity extends BaseActivity implements EMEventListener {
             public void run() {
                 int count = EMChatManager.getInstance().getUnreadMsgsCount();
                 if (count > 0) {
-                    mLayoutFab.setBackgroundResource(R.drawable.btn_fab_red);
+                    mUnreadDotView.setVisibility(View.VISIBLE);
                 } else {
-                    mLayoutFab.setBackgroundResource(R.drawable.btn_fab_green);
+                    mUnreadDotView.setVisibility(View.GONE);
                 }
             }
         });
