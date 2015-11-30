@@ -127,7 +127,7 @@ public class CustomerHelper {
              */
             @Override
             public int getSmallIcon(EMMessage message) {
-                return R.mipmap.icon_small;
+                return R.mipmap.ic_small;
             }
 
             /**
