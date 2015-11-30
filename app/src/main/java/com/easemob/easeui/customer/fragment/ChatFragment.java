@@ -163,8 +163,8 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         return false;
     }
 
-
     /**
+     * ---------------------------------------------------
      * 设置自定义消息提供者
      *
      * @return
@@ -233,12 +233,6 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         }
     }
 
-    /**
-     * ChatFragment 回调函数，由Activity实现，用来和Activity实现通讯
-     */
-    public interface CustomerFragmentListener {
-        public void onFragmentInteraction(int i);
-    }
 
     /**
      * 设置用户信息扩展
@@ -351,7 +345,17 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         return jsonWeiChat;
     }
 
+
     /**
+     * 清空当前会话聊天记录
+     */
+    public void clearConversation() {
+        emptyHistory();
+    }
+
+    /**
+     * ------------------------------------------------------------------
+     * <p/>
      * 满意度评价的回调接口，为了实现客户端在满意度ChatRow中发送满意度类型的消息
      */
     class MyChatRowListener implements CtrlTypeChatRow.CustomerChatRowListener {
@@ -375,5 +379,14 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
             message.setAttribute(CustomerConstants.C_ATTR_KEY_WEICHAT, jsonWeiChat);
             sendMessage(message);
         }
+    }
+
+    /**
+     * ----------------------------------------------------------------
+     * <p/>
+     * ChatFragment 回调接口，由Activity实现，用来和Activity实现通讯
+     */
+    public interface CustomerFragmentListener {
+        public void onFragmentInteraction(int i);
     }
 }

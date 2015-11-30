@@ -23,6 +23,7 @@
     <string name="btn_setting_user_info">账户信息</string>
 
     <string name="action_message">消息</string>
+    <string name="action_delete">删除</string>
     <string name="action_setting">设置</string>
 
     <string name="error_field_required">此项必须输入</string>
