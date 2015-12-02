@@ -1,24 +1,27 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme.Base" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <!-- Application基本主题 -->
+    <style name="MLTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 
         <!--状态栏颜色 -->
         <item name="colorPrimaryDark">@color/ml_primary_dark</item>
         <!--Toolbar 颜色-->
         <item name="colorPrimary">@color/ml_primary</item>
-
         <!--表示CheckBox、EditText、Switch、Spinner、RadioButton等控件激活时候的色调-->
         <item name="colorAccent">@color/ml_accent</item>
         <!--同上-->
         <item name="colorControlActivated">@color/ml_accent</item>
 
+
+        <!--设置不显示ActionBar-->
+        <item name="windowActionBar">false</item>
+        <!--设置不显示Title-->
+        <item name="windowNoTitle">true</item>
         <!--<item name="android:textColor">@color/ml_text_black</item>-->
-
-
     </style>
 
-    <style name="AppTheme" parent="AppTheme.Base">
+    <!--自定义主题-->
+    <style name="MLTheme.Red">
 
     </style>
 

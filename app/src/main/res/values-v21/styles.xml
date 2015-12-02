@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--主题定义-->
-    <style name="AppTheme" parent="AppTheme.Base">
-
+    <style name="MLTheme.Red">
+        
+        <!--设置是否可以更改SystemBar背景颜色-->
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <!--设置状态栏为透明-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
 </resources>

@@ -58,7 +58,7 @@
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/MLTheme">
 
         <!-- 开屏页 -->
         <activity android:name=".activity.SplashActivity">
@@ -69,25 +69,35 @@
             </intent-filter>
         </activity>
         <!-- MainActivity -->
-        <activity android:name=".activity.MainActivity" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/MLTheme.Red" />
         <!-- 登陆 -->
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login" />
-        <activity android:name=".activity.ChatActivity"></activity>
-        <activity android:name=".activity.SettingActivity"></activity>
-        <activity android:name=".activity.DetailActivity"></activity>
+            android:label="@string/title_activity_login"
+            android:theme="@style/MLTheme.Red" />
+        <activity
+            android:name=".activity.ChatActivity"
+            android:theme="@style/MLTheme.Red" />
+        <activity
+            android:name=".activity.SettingActivity"
+            android:theme="@style/MLTheme.Red" />
+        <activity
+            android:name=".activity.DetailActivity"
+            android:theme="@style/MLTheme.Red" />
         <!-- 设置环信appkey -->
         <meta-data
             android:name="EASEMOB_APPKEY"
             android:value="lzan13#hxsdkdemo" />
+        <service android:name="com.easemob.chat.EMChatService" />
 
         <!--配置EaseUI库里的Activity类-->
         <!-- 显示下载大图页面 -->
         <activity
             android:name="com.easemob.easeui.ui.EaseShowBigImageActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/horizontal_slide"></activity>
+            android:theme="@style/horizontal_slide" />
 
     </application>
 
