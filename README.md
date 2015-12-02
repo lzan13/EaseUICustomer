@@ -13,6 +13,15 @@ EaseUICustomer
 ----------
 使用了Android Material Design 样式开发，将Android新设计与环信的EaseUI结合，
 
+需要注意的地方（重要）
+----------------
+    使用时需要把配置文件里的appkey改成自己的，以及开屏页SplashActivity类里默认数据改成自己的  
+    使用时需要把配置文件里的appkey改成自己的，以及开屏页SplashActivity类里默认数据改成自己的  
+    使用时需要把配置文件里的appkey改成自己的，以及开屏页SplashActivity类里默认数据改成自己的  
+    重要的事情说三遍  
+    在使用过程中有什么疑问可以去环信官方社区 `imgeek.org` 去发帖[imgeek 社区][imgeek]
+
+
 实现的功能
 ----------
 全局消息的监听，在DemoHelper类实现，搜索 `onEvent` 方法  
@@ -39,10 +48,6 @@ EaseUICustomer
 Android 官方下载 [Android官网][3]  
 国内网友收集 [AndroidDevTools][4]  
 Gradle（AndroidStudio有时自动下载不成功，所以要自己下载） [gradle v2.4下载][gradle]
-
-需要注意的地方
-----------------
-在使用过程中有什么疑问可以去环信官方社区 `imgeek.org` 去发帖[imgeek 社区][imgeek]
 
 
 
