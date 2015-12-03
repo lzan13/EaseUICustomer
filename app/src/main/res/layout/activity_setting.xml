@@ -11,87 +11,100 @@
     <!--包含Toolbar-->
     <include layout="@layout/widget_toolbar" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <!--设置appkey-->
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="@string/btn_setting_appkey"
-            android:textColor="@color/ml_blue"
-            android:textSize="16sp" />
+            android:layout_margin="16dp"
+            android:orientation="vertical">
 
-        <View
+            <!--设置appkey-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="@string/btn_setting_appkey"
+                android:textColor="@color/ml_blue"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/ml_blue" />
+
+            <TextView
+                android:id="@+id/text_setting_appkey"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_setting_item"
+                android:gravity="center_vertical"
+                android:hint="@string/btn_setting_appkey"
+                android:paddingLeft="8dp"
+                android:textSize="18sp" />
+
+
+            <!--设置客服关联的IM服务号-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/btn_setting_im_customer"
+                android:textColor="@color/ml_blue"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/ml_blue" />
+
+            <TextView
+                android:id="@+id/text_setting_im_customer"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_setting_item"
+                android:gravity="center_vertical"
+                android:hint="@string/btn_setting_im_customer"
+                android:paddingLeft="8dp"
+                android:textSize="18sp" />
+
+            <!--用户个人信息设置-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/btn_setting_user_info"
+                android:textColor="@color/ml_blue"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/ml_blue" />
+
+            <TextView
+                android:id="@+id/text_setting_user_info"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_setting_item"
+                android:gravity="center_vertical"
+                android:hint="@string/btn_setting_user_info"
+                android:paddingLeft="8dp"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_signout"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ml_blue" />
-
-        <TextView
-            android:id="@+id/text_setting_appkey"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/btn_setting_item"
-            android:gravity="center_vertical"
-            android:hint="@string/btn_setting_appkey"
-            android:paddingLeft="8dp"
-            android:textSize="18sp" />
-
-
-        <!--设置客服关联的IM服务号-->
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/btn_setting_im_customer"
-            android:textColor="@color/ml_blue"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ml_blue" />
-
-        <TextView
-            android:id="@+id/text_setting_im_customer"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/btn_setting_item"
-            android:gravity="center_vertical"
-            android:hint="@string/btn_setting_im_customer"
-            android:paddingLeft="8dp"
-            android:textSize="18sp" />
-
-        <!--用户个人信息设置-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/btn_setting_user_info"
-            android:textColor="@color/ml_blue"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/ml_blue" />
-
-        <TextView
-            android:id="@+id/text_setting_user_info"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/btn_setting_item"
-            android:gravity="center_vertical"
-            android:hint="@string/btn_setting_user_info"
-            android:paddingLeft="8dp"
-            android:textSize="18sp" />
-
-    </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/dimen_16"
+            android:text="@string/app_name" />
+    </RelativeLayout>
 
 </LinearLayout>

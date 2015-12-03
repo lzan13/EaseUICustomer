@@ -31,7 +31,15 @@ public class MainActivity extends BaseActivity implements EMEventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 判断是否退出登陆，然后关闭Activity，并跳转到登陆界面
+        boolean isSignOut = getIntent().getBooleanExtra("signout", false);
+        if (isSignOut) {
+            Intent intent = new Intent(mActivity, LoginActivity.class);
+            startActivity(intent);
+            mActivity.finish();
+        }
         setContentView(R.layout.activity_main);
+
         initToolbar();
         initView();
     }

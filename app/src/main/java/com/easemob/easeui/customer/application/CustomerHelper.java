@@ -3,6 +3,7 @@ package com.easemob.easeui.customer.application;
 import android.content.Context;
 import android.content.Intent;
 
+import com.easemob.EMCallBack;
 import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
 import com.easemob.chat.EMChat;
@@ -258,5 +259,29 @@ public class CustomerHelper {
             e.printStackTrace();
         }
         return false;
+    }
+
+
+    /**
+     * 退出登陆方法
+     */
+    public void signOut(final EMCallBack callback) {
+        EMChatManager.getInstance().logout(new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                mEaseUI = null;
+                callback.onSuccess();
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                callback.onError(i, s);
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
     }
 }

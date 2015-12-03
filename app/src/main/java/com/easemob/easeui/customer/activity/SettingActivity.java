@@ -1,16 +1,23 @@
 package com.easemob.easeui.customer.activity;
 
+import android.app.ActivityManager;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.easemob.EMCallBack;
 import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.application.CustomerConstants;
+import com.easemob.easeui.customer.application.CustomerHelper;
 import com.easemob.easeui.customer.util.MLSPUtil;
 
 /**
@@ -19,9 +26,13 @@ import com.easemob.easeui.customer.util.MLSPUtil;
 public class SettingActivity extends BaseActivity {
 
     private View mRootView;
+    // 显示 appkey 的TextView，点击弹出 appkey 设置窗口
     private TextView mAppkeyView;
+    // 显示关联号TextView，点击弹出IM服务号编辑窗口
     private TextView mIMCustomerView;
     private TextView mUserInfoView;
+
+    private Button mSignOutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +70,17 @@ public class SettingActivity extends BaseActivity {
         mIMCustomerView = (TextView) findViewById(R.id.text_setting_im_customer);
         mUserInfoView = (TextView) findViewById(R.id.text_setting_user_info);
 
+        mAppkeyView.setOnClickListener(viewListener);
+        mIMCustomerView.setOnClickListener(viewListener);
+        mUserInfoView.setOnClickListener(viewListener);
+
+        mSignOutBtn = (Button) findViewById(R.id.btn_signout);
+        mSignOutBtn.setOnClickListener(viewListener);
+
         mAppkeyView.setText((CharSequence) MLSPUtil.get(mActivity, CustomerConstants.C_APPKEY, ""));
         mIMCustomerView.setText((CharSequence) MLSPUtil.get(mActivity, CustomerConstants.C_IM, ""));
 
 
-        mAppkeyView.setOnClickListener(viewListener);
-        mIMCustomerView.setOnClickListener(viewListener);
-        mUserInfoView.setOnClickListener(viewListener);
     }
 
 
@@ -84,6 +99,9 @@ public class SettingActivity extends BaseActivity {
                     break;
                 case R.id.text_setting_user_info:
                     changeUserInfo();
+                    break;
+                case R.id.btn_signout:
+                    signOut();
                     break;
             }
         }
@@ -157,4 +175,39 @@ public class SettingActivity extends BaseActivity {
     protected void onStart() {
         super.onStart();
     }
+
+    /**
+     * 退出登陆
+     */
+    private void signOut() {
+        CustomerHelper.getInstance().signOut(new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                Intent intent = new Intent(mActivity, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("signout", true);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onError(final int i, final String s) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(mActivity, "logout error! code: " + i + "error: " + s,
+                                Toast.LENGTH_LONG).show();
+                        Log.i("lzan13", "logout error! code: " + i + "error: " + s);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
+    }
+
 }
