@@ -12,6 +12,7 @@ import com.easemob.easeui.customer.R;
 import com.easemob.easeui.customer.application.CustomerConstants;
 import com.easemob.easeui.customer.application.CustomerHelper;
 import com.easemob.easeui.customer.entity.EnquiryEntity;
+import com.easemob.easeui.customer.entity.OrderEntity;
 import com.easemob.easeui.customer.entity.ShopEntity;
 import com.easemob.easeui.customer.util.MLSPUtil;
 import com.easemob.easeui.customer.widget.CtrlTypeChatRow;
@@ -37,12 +38,24 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     // ChatFragment 回调函数，由Activity实现，用来和Activity实现通讯
     private CustomerFragmentListener mFragmentListener;
 
-    private String mCurrentItem;
+    /**
+     * 当前选择的哪一件商品，这里只是测试，为了从ShopEntity获取商品信息通过扩展发送轨迹类型消息
+     * 这个只有在从商品详情页点击进来才会有值，
+     */
+    private String mCurrentShop;
+
+    /**
+     * 模拟当前选择的订单
+     */
+    private String mCurrentOrder;
+
+    // 技能组
+    private String mSkillGroup;
 
     // 扩展菜单数据
     protected int[] itemStrings = {R.string.btn_input_menu_camera, R.string.btn_input_menu_photo, R.string.btn_input_menu_answer};
     protected int[] itemdrawables = {R.drawable.btn_customer_camera, R.drawable.btn_customer_photo, R.drawable.btn_customer_answer};
-    protected int[] itemIds = {1, 2, 11};
+    protected int[] itemIds = {1, 2, 3};
 
 
     @Override
@@ -55,9 +68,17 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         super.onActivityCreated(savedInstanceState);
         mActivity = getActivity();
         mActivity.getFilesDir().getPath();
-        mCurrentItem = getArguments().getString("item");
-        if (mCurrentItem != null) {
-            sendTrackMessage(Integer.valueOf(mCurrentItem));
+        // 模拟从哪一件商品进来联系客服
+        mCurrentShop = getArguments().getString("shop");
+        mCurrentOrder = getArguments().getString("order");
+        mSkillGroup = getArguments().getString("skill_group");
+
+        if (mCurrentShop != null) {
+            // 如果商品扩展不为null 则默认发送一条轨迹消息
+            sendTrackMessage(Integer.valueOf(mCurrentShop));
+        } else if (mCurrentOrder != null) {
+            // 如果是从订单页点击进来的，则默认发送一条订单消息
+            sendOrderMessage(Integer.valueOf(mCurrentOrder));
         }
     }
 
@@ -275,9 +296,11 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
     private void setSkillGroup(EMMessage message) {
         try {
             JSONObject jsonWebChat = getWeichatJSONObject(message);
-            // 这里是根据传进来的item是否为空确定是从首页点击连接客服，还是从商品详情页点击联系客服
-            if (mCurrentItem != null) {
+            // 这里是根据传进来的 商品 是否为空确定是从首页点击连接客服，还是从商品详情页点击联系客服
+            if (mCurrentShop != null) {
                 jsonWebChat.put("queueName", "shouqian");
+            } else if (mCurrentOrder != null) {
+
             } else {
                 jsonWebChat.put("queueName", "shouhou");
             }
@@ -311,12 +334,40 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         JSONObject jsonMsgType = new JSONObject();
         JSONObject jsonTrack = new JSONObject();
         try {
-            jsonTrack.put("title", shopEntity.getShopTitle());
-            jsonTrack.put("price", shopEntity.getShopPrice());
-            jsonTrack.put("desc", shopEntity.getShopDesc());
-            jsonTrack.put("img_url", shopEntity.getShopImageUrl());
-            jsonTrack.put("item_url", shopEntity.getShopUrl());
+            jsonTrack.put("title", shopEntity.getTitle());
+            jsonTrack.put("price", shopEntity.getPrice());
+            jsonTrack.put("desc", shopEntity.getDesc());
+            jsonTrack.put("img_url", shopEntity.getImageUrl());
+            jsonTrack.put("item_url", shopEntity.getUrl());
             jsonMsgType.put("track", jsonTrack);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        message.setAttribute("msgtype", jsonMsgType);
+        setUserAttibutes(message);
+        setSkillGroup(message);
+        sendMessage(message);
+    }
+
+    /**
+     * 发送包含订单信息的消息
+     *
+     * @param item
+     */
+    public void sendOrderMessage(int item) {
+        OrderEntity orderEntity = new OrderEntity(item);
+
+        EMMessage message = EMMessage.createTxtSendMessage("客服图文混排消息", toChatUsername);
+        JSONObject jsonMsgType = new JSONObject();
+        JSONObject jsonTrack = new JSONObject();
+        try {
+            jsonTrack.put("title", orderEntity.getTitle());
+            jsonTrack.put("order_title", orderEntity.getOrderTitle());
+            jsonTrack.put("price", orderEntity.getPrice());
+            jsonTrack.put("desc", orderEntity.getDesc());
+            jsonTrack.put("img_url", orderEntity.getImageUrl());
+            jsonTrack.put("item_url", orderEntity.getUrl());
+            jsonMsgType.put("order", jsonTrack);
         } catch (JSONException e) {
             e.printStackTrace();
         }

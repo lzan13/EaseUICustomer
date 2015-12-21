@@ -26,8 +26,9 @@ import org.json.JSONObject;
 
 /**
  * Created by lzan13 on 2015/11/25.
- * 自定义ChatRow类，这个是满意度评价的类，实现了点击弹出评价Dialog，并发送评价信息
- * 在聊天界面 自定义ChatRow提供者中 {@link ChatFragment.CustomChatRowProvider}调用
+ * 满意度评价类型消息 ChatRow
+ * 实现了点击弹出评价Dialog，并发送评价信息
+ * 由聊天界面自定义ChatRow提供者中 {@link ChatFragment.CustomChatRowProvider}调用
  */
 public class CtrlTypeChatRow extends EaseChatRow {
 

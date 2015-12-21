@@ -58,10 +58,11 @@ public class MainActivity extends BaseActivity implements EMEventListener {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(mActivity.getWindow().getDecorView(), "暂未实现修改用户信息界面", Snackbar.LENGTH_LONG).show();
+                jumpUserActivity();
             }
         });
     }
+
 
     /**
      * 初始化UI
@@ -154,7 +155,19 @@ public class MainActivity extends BaseActivity implements EMEventListener {
         // 这个在使用EaseChatFragment时，传入的username参数key必须用EaseUI定义的，否则会报错
         String username = (String) MLSPUtil.get(mActivity, CustomerConstants.C_IM, "");
         intent.putExtra(EaseConstant.EXTRA_USER_ID, username);
+        // 这里默认直接联系客服的 “shouhou” 技能组
+        intent.putExtra("skill_group", "shouhou");
         mActivity.startActivity(intent);
+    }
+
+    /**
+     * 跳转到用户界面
+     */
+    private void jumpUserActivity() {
+        Intent intent = new Intent();
+        intent.setClass(mActivity, UserActivity.class);
+        mActivity.startActivity(intent);
+//        Snackbar.make(mActivity.getWindow().getDecorView(), "暂未实现修改用户信息界面", Snackbar.LENGTH_LONG).show();
     }
 
     /**
@@ -164,32 +177,32 @@ public class MainActivity extends BaseActivity implements EMEventListener {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent();
-            String item = "item";
+            String shop = "shop";
             switch (v.getId()) {
                 case R.id.item_01:
-                    item = "1";
+                    shop = "1";
                     break;
                 case R.id.item_02:
-                    item = "2";
+                    shop = "2";
                     break;
                 case R.id.item_03:
-                    item = "3";
+                    shop = "3";
                     break;
                 case R.id.item_04:
-                    item = "4";
+                    shop = "4";
                     break;
                 case R.id.item_05:
-                    item = "5";
+                    shop = "5";
                     break;
                 case R.id.item_06:
-                    item = "6";
+                    shop = "6";
                     break;
                 default:
-                    item = "6";
+                    shop = "6";
                     break;
             }
             intent.setClass(mActivity, DetailActivity.class);
-            intent.putExtra("item", item);
+            intent.putExtra("shop", shop);
             mActivity.startActivity(intent);
         }
     };

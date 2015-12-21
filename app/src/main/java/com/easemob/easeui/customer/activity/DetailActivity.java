@@ -24,7 +24,7 @@ public class DetailActivity extends BaseActivity {
     private WebView mWebView;
     private ShopEntity mShopEntity;
     // 当前选择的商品
-    private String mCurrentItem;
+    private String mCurrentShop;
 
     private View mChatView;
     private View mJoinInShoppingCartView;
@@ -41,11 +41,11 @@ public class DetailActivity extends BaseActivity {
     }
 
     /**
-     * 初始化数据，这里是根据点击进来的 Item 去初始化模拟商品详情
+     * 初始化数据，这里是根据点击进来的 shop 去初始化模拟商品详情
      */
     private void init() {
-        mCurrentItem = getIntent().getStringExtra("item");
-        mShopEntity = new ShopEntity(Integer.valueOf(mCurrentItem));
+        mCurrentShop = getIntent().getStringExtra("shop");
+        mShopEntity = new ShopEntity(Integer.valueOf(mCurrentShop));
     }
 
     /**
@@ -53,7 +53,7 @@ public class DetailActivity extends BaseActivity {
      */
     private void initToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.widget_toolbar);
-        mToolbar.setTitle(mShopEntity.getShopTitle());
+        mToolbar.setTitle(mShopEntity.getTitle());
         mToolbar.setNavigationIcon(R.mipmap.ic_arrow_back_white_24dp);
         mToolbar.setTitleTextColor(getResources().getColor(R.color.ml_text_white));
         setSupportActionBar(mToolbar);
@@ -100,7 +100,9 @@ public class DetailActivity extends BaseActivity {
                     // 这个在使用EaseChatFragment时，传入的username参数key必须用EaseUI定义的，否则会报错
                     String username = (String) MLSPUtil.get(mActivity, CustomerConstants.C_IM, "");
                     intent.putExtra(EaseConstant.EXTRA_USER_ID, username);
-                    intent.putExtra("item", mCurrentItem);
+                    intent.putExtra("shop", mCurrentShop);
+                    // 这里默认的客服技能组是 “shouqian”
+                    intent.putExtra("skill_group", "shouqian");
                     mActivity.startActivity(intent);
                     break;
                 case R.id.action_join_in_shopping_cart:

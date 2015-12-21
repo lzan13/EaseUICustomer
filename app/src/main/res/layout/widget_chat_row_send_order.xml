@@ -2,6 +2,98 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical">
 
+    <!--时间控件 这里id必须和EaseUI定义的一样，不然会出错-->
+    <TextView
+        android:id="@+id/timestamp"
+        style="@style/chat_text_date_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16">
+
+        <!--头像控件 这里id必须和EaseUI定义的一样，不然会出错-->
+        <ImageView
+            android:id="@+id/iv_userhead"
+            android:layout_width="@dimen/dimen_48"
+            android:layout_height="@dimen/dimen_48"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/ic_avatar_02" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dimen_4"
+            android:layout_toLeftOf="@id/iv_userhead"
+            android:background="@drawable/btn_chat_row_02"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_8">
+
+
+            <!--用户轨迹标题-->
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_4"
+                android:text="@string/app_name"
+                android:textColor="@color/ml_text_black"
+                android:textSize="@dimen/size_14" />
+
+            <TextView
+                android:id="@+id/text_order_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_4"
+                android:text="@string/app_name"
+                android:textColor="@color/ml_text_black"
+                android:textSize="@dimen/size_14" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dimen_4"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_image"
+                    android:layout_width="@dimen/dimen_56"
+                    android:layout_height="@dimen/dimen_56"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_avatar_01" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_4"
+                        android:text="@string/app_name"
+                        android:textSize="@dimen/size_12" />
+
+                    <TextView
+                        android:id="@+id/text_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_4"
+                        android:text="@string/app_name"
+                        android:textColor="@color/ml_text_red"
+                        android:textSize="@dimen/size_12" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

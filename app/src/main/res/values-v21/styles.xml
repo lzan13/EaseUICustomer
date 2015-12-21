@@ -2,7 +2,7 @@
 <resources>
     <!--主题定义-->
     <style name="MLTheme.Red">
-        
+
         <!--设置是否可以更改SystemBar背景颜色-->
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <!--设置状态栏为透明-->

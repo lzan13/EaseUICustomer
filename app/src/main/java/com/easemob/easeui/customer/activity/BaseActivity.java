@@ -10,9 +10,10 @@ import android.support.v7.widget.Toolbar;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    // Activity 全局变量用来代替this
+    // Activity 在活动界面中的全局变量，用来代替this，在基类中定义是为了省去每个集成此类的 Activity 都定义一次
     public BaseActivity mActivity;
 
+    // Toolbar 在基类中定义是为了省去每个集成此类的 Activity 都定义一次
     public Toolbar mToolbar;
 
     @Override

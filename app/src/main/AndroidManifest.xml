@@ -90,15 +90,19 @@
         <meta-data
             android:name="EASEMOB_APPKEY"
             android:value="lzan13#hxsdkdemo" />
+
         <service android:name="com.easemob.chat.EMChatService" />
 
-        <!--配置EaseUI库里的Activity类-->
+        <!-- 配置EaseUI库里的Activity类 -->
         <!-- 显示下载大图页面 -->
         <activity
             android:name="com.easemob.easeui.ui.EaseShowBigImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide" />
-
+        <activity
+            android:name=".activity.UserActivity"
+            android:label="@string/title_activity_user"
+            android:theme="@style/MLTheme"></activity>
     </application>
 
 </manifest>
