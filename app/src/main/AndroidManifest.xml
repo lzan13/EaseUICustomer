@@ -86,6 +86,10 @@
         <activity
             android:name=".activity.DetailActivity"
             android:theme="@style/MLTheme.Red" />
+
+        <activity
+            android:name=".activity.MessageActivity"
+            android:theme="@style/MLTheme.Red"></activity>
         <!-- 设置环信appkey -->
         <meta-data
             android:name="EASEMOB_APPKEY"
@@ -99,10 +103,6 @@
             android:name="com.easemob.easeui.ui.EaseShowBigImageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide" />
-        <activity
-            android:name=".activity.UserActivity"
-            android:label="@string/title_activity_user"
-            android:theme="@style/MLTheme"></activity>
     </application>
 
 </manifest>

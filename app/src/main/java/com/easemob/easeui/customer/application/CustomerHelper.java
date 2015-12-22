@@ -219,6 +219,8 @@ public class CustomerHelper {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -238,6 +240,8 @@ public class CustomerHelper {
             }
         } catch (EaseMobException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -256,6 +260,8 @@ public class CustomerHelper {
                 return true;
             }
         } catch (EaseMobException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;

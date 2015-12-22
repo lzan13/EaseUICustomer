@@ -21,7 +21,7 @@ import com.easemob.easeui.customer.util.MLSPUtil;
 /**
  * Created by lzan13 on 2015/11/6 21:10.
  * 程序主界面，主要模拟实现商品的列表展示，以及设置界面的跳转等功能
- * TODO (lzan13) 聊天信息的监听，
+ * 实现消息的监听，在Toolbar上显示有未读消息
  */
 public class MainActivity extends BaseActivity implements EMEventListener {
 
@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity implements EMEventListener {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpUserActivity();
+                Snackbar.make(mActivity.getWindow().getDecorView(), "暂未实现修改用户信息界面", Snackbar.LENGTH_LONG).show();
             }
         });
     }
@@ -80,7 +80,8 @@ public class MainActivity extends BaseActivity implements EMEventListener {
         mMessageAlertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jumpCustomer();
+//                jumpCustomer();
+                jumpMessageActivity();
             }
         });
     }
@@ -127,14 +128,6 @@ public class MainActivity extends BaseActivity implements EMEventListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent();
         switch (item.getItemId()) {
-//            case R.id.action_message:
-//                // 点击直接和客服联系
-//                intent.setClass(mActivity, ChatActivity.class);
-//                // 这个在使用EaseChatFragment时，传入的username参数key必须用EaseUI定义的，否则会报错
-//                String username = (String) MLSPUtil.get(mActivity, CustomerConstants.C_IM, "");
-//                intent.putExtra(EaseConstant.EXTRA_USER_ID, username);
-//                mActivity.startActivity(intent);
-//                break;
             case R.id.action_setting:
                 // 进入设置界面
                 intent.setClass(mActivity, SettingActivity.class);
@@ -144,30 +137,13 @@ public class MainActivity extends BaseActivity implements EMEventListener {
         return super.onOptionsItemSelected(item);
     }
 
-
     /**
-     * 跳转到客服界面
+     * 跳转到信息列表界面
      */
-    private void jumpCustomer() {
+    private void jumpMessageActivity() {
         Intent intent = new Intent();
-        // 点击直接和客服联系
-        intent.setClass(mActivity, ChatActivity.class);
-        // 这个在使用EaseChatFragment时，传入的username参数key必须用EaseUI定义的，否则会报错
-        String username = (String) MLSPUtil.get(mActivity, CustomerConstants.C_IM, "");
-        intent.putExtra(EaseConstant.EXTRA_USER_ID, username);
-        // 这里默认直接联系客服的 “shouhou” 技能组
-        intent.putExtra("skill_group", "shouhou");
+        intent.setClass(mActivity, MessageActivity.class);
         mActivity.startActivity(intent);
-    }
-
-    /**
-     * 跳转到用户界面
-     */
-    private void jumpUserActivity() {
-        Intent intent = new Intent();
-        intent.setClass(mActivity, UserActivity.class);
-        mActivity.startActivity(intent);
-//        Snackbar.make(mActivity.getWindow().getDecorView(), "暂未实现修改用户信息界面", Snackbar.LENGTH_LONG).show();
     }
 
     /**

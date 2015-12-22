@@ -171,17 +171,17 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
             case 2:
                 selectPicFromLocal(); // 图库选择图片
                 break;
-            case 3: // 位置
-//                startActivityForResult(new Intent(getActivity(), EaseBaiduMapActivity.class), REQUEST_CODE_MAP);
-                break;
-            case 11:// 常用语
+            case 3:// 常用语
                 mFragmentListener.onFragmentInteraction(11);
+                break;
+            case 10: // 位置
+//                startActivityForResult(new Intent(getActivity(), EaseBaiduMapActivity.class), REQUEST_CODE_MAP);
                 break;
             default:
 
                 break;
         }
-        return false;
+        return true;
     }
 
     /**
@@ -200,13 +200,16 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
      */
     class CustomChatRowProvider implements EaseCustomChatRowProvider {
         /**
-         * 返回自定义消息的个数
+         * 返回自定义消息的个数(这个个数必须和你自定义的ChatRow界面个数一致，否则会数组越界)
+         * FATAL EXCEPTION: main Process: com.easemob.easeui.customer, PID: 32217
+         * java.lang.ArrayIndexOutOfBoundsException: length=18; index=18
+         * at android.widget.AbsListView$RecycleBin.addScrapView(AbsListView.java:6588)
          *
          * @return
          */
         @Override
         public int getCustomChatRowTypeCount() {
-            return 4;
+            return 6;
         }
 
         /**
@@ -219,11 +222,11 @@ public class ChatFragment extends EaseChatFragment implements EaseChatFragment.E
         public int getCustomChatRowType(EMMessage message) {
             if (message.getType() == EMMessage.Type.TXT) {
                 if (CustomerHelper.getInstance().isCtrlTypeMessage(message)) {
-                    return message.direct == EMMessage.Direct.RECEIVE ? 1 : 2;
+                    return message.direct == EMMessage.Direct.RECEIVE ? 2 : 1;
                 } else if (CustomerHelper.getInstance().isTrackMessage(message)) {
-                    return message.direct == EMMessage.Direct.RECEIVE ? 3 : 4;
+                    return message.direct == EMMessage.Direct.RECEIVE ? 4 : 3;
                 } else if (CustomerHelper.getInstance().isOrderFormMessage(message)) {
-                    return message.direct == EMMessage.Direct.RECEIVE ? 5 : 6;
+                    return message.direct == EMMessage.Direct.RECEIVE ? 6 : 5;
                 }
             }
             return 0;
